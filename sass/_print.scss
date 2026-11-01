@@ -12,8 +12,14 @@
   .introduction,
   .notes,
   .entry-number,
+  .entry-from,
+  .entry-to,
+  .entry-months,
+  .career-ledger thead,
+  .career-ledger tfoot,
+  .ledger-basis,
+  .register-key,
   .entry-note,
-  .ledger-labels,
   .section-heading > .stamp {
     display: none;
   }
@@ -48,8 +54,20 @@
   }
 
   h2 {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-family: inherit;
     font-size: 14pt;
+    letter-spacing: normal;
+    text-transform: none;
     margin-bottom: 3mm;
+  }
+
+  .section-heading {
+    display: block;
+    border: 0;
+    background: transparent;
   }
 
   h3,
@@ -69,13 +87,30 @@
   }
 
   .record-layout,
-  .ledger-entry,
-  .inventory article {
+  .career-ledger,
+  .career-ledger tbody,
+  .career-ledger .ledger-entry,
+  .career-ledger .entry-content,
+  .inventory article,
+  #education article {
     display: block;
   }
 
   .record-layout {
     padding: 0;
+  }
+
+  .career-ledger {
+    border: 0;
+  }
+
+  .career-ledger .entry-content {
+    padding: 0;
+    border: 0;
+  }
+
+  .print-period {
+    display: block;
   }
 
   .record > section + section {
@@ -91,7 +126,8 @@
   }
 
   .ledger-entry,
-  .inventory article {
+  .inventory article,
+  #education article {
     padding: 0;
     border: 0;
   }
@@ -107,6 +143,10 @@
     font-size: 9pt;
     margin-bottom: 1mm;
     line-height: 1.35;
+  }
+
+  #education .period {
+    white-space: normal;
   }
 
   .ledger-entry .period time {
@@ -149,6 +189,10 @@
 
   li::marker {
     color: #000;
+  }
+
+  .interests ul {
+    padding: 0;
   }
 
   .keywords {

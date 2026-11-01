@@ -22,6 +22,24 @@
   {% endif %}
 {% endcomponent resume.period %}
 
+{% component ledger.months(start: string = "", end: string = "") -%}
+  {%- if start | length in [7, 10] and end | length in [7, 10] -%}
+    {%- set first = start | split(pat="-") -%}
+    {%- set last = end | split(pat="-") -%}
+    {%- set first_day = 1 -%}
+    {%- set last_day = 1 -%}
+    {%- if first | length == 3 -%}{%- set first_day = first[2] | int -%}{%- endif -%}
+    {%- if last | length == 3 -%}{%- set last_day = last[2] | int -%}{%- endif -%}
+    {%- set months = (last[0] | int - first[0] | int) * 12 + (last[1] | int - first[1] | int) -%}
+    {%- if last_day < first_day -%}{%- set months = months - 1 -%}{%- endif -%}
+    {%- if months >= 0 -%}{{ months }}{%- endif -%}
+  {%- endif -%}
+{%- endcomponent ledger.months %}
+
+{% component ledger.date(value: string = "") -%}
+  {%- if value -%}<time datetime="{{ value }}">{{ value | replace(from="-", to="·") }}</time>{%- endif -%}
+{%- endcomponent ledger.date %}
+
 {% block nav_links %}
 <li><a href="#experience">Ledger</a></li>
 <li><a href="#skills">Skills</a></li>
@@ -47,11 +65,11 @@
         {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
         <div class="introduction">
           <div>
-            <p class="intro">{{ about.intro }} <a class="note-reference" href="#working-method" aria-label="Note 1: On the tools">[1]</a></p>
+            <p class="intro">{{ about.intro }} <a class="register-key note-reference" id="note-ref-working-method" href="#working-method" aria-label="Note 1: On the tools">1</a></p>
             <p class="practice">{{ about.practice }}</p>
             {% include "partials/social-links.html" %}
           </div>
-          <aside class="object-note" aria-label="About this page">
+          <aside class="maker-plate" aria-label="About this page">
             <p class="stamp">A familiar object</p>
             <p>{{ about.object }}</p>
           </aside>
@@ -73,13 +91,33 @@
       {% if resume.work %}
       <section id="experience" aria-labelledby="experience-title">
         <div class="section-heading"><h2 id="experience-title">Career ledger</h2><span class="stamp">Most recent first</span></div>
-        {% if resume.basics.summary %}<p class="professional-summary">{{ resume.basics.summary }}</p>{% endif %}
-        <div class="ledger-labels stamp" aria-hidden="true"><span>No.</span><span>Period</span><span>Work experience</span></div>
+        {% if resume.basics.summary %}<p class="professional-summary">{{ resume.basics.summary }} <a class="register-key note-reference" id="note-ref-production" href="#production" aria-label="Note 3: On production">3</a></p>{% endif %}
+        <p class="ledger-basis" id="ledger-basis">Whole elapsed months, from day 01 for month-only dates. Total adds closed entries; ongoing and incomplete periods are left blank.</p>
+        <table class="career-ledger" role="table" aria-labelledby="experience-title" aria-describedby="ledger-basis">
+          <thead role="rowgroup"><tr role="row">
+            <th scope="col" role="columnheader">No.</th>
+            <th scope="col" role="columnheader">From</th>
+            <th scope="col" role="columnheader">To</th>
+            <th scope="col" role="columnheader">Months</th>
+            <th scope="col" role="columnheader">Entry</th>
+          </tr></thead>
+          <tbody role="rowgroup">
+        {% set total_months = 0 %}
+        {% set closed_entries = 0 %}
         {% for experience in resume.work %}
-        <article class="ledger-entry">
-          <span class="entry-number" aria-hidden="true">0{{ loop.index }}</span>
-          {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
-          <div class="entry-content">
+        {% set months = <ledger.months start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> %}
+        {% set months = months | trim %}
+        {% if months != "" %}
+          {% set_global total_months = total_months + (months | int) %}
+          {% set_global closed_entries = closed_entries + 1 %}
+        {% endif %}
+        <tr class="ledger-entry" role="row">
+          <td class="entry-number" role="cell">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</td>
+          <td class="entry-from" role="cell">{{ <ledger.date value={experience.startDate | default(value="")} /> }}</td>
+          <td class="entry-to" role="cell">{% if experience.endDate %}{{ <ledger.date value={experience.endDate} /> }}{% elif experience.startDate %}<span class="present">Present</span>{% endif %}</td>
+          <td class="entry-months" role="cell">{{ months }}</td>
+          <td class="entry-content" role="cell">
+          <div class="print-period">{{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}</div>
           <h3>{{ experience.position }}</h3>
           {% set organization = experience.name | default(value=experience.company | default(value="")) %}
           {% if organization or experience.location %}<p class="organization">{{ organization }}{% if organization and experience.location %} · {% endif %}{% if experience.location %}{{ experience.location }}{% endif %}</p>{% endif %}
@@ -91,10 +129,17 @@
             {% endfor %}
           </ul>
           {% endif %}
-          {% if organization == "Bellman" and experience.position == "Staff Engineer" %}<p class="entry-note"><a href="#bellman">A personal note on Bellman [2]</a></p>{% endif %}
-          </div>
-        </article>
+          {% if organization == "Bellman" and experience.position == "Staff Engineer" %}<p class="entry-note">A personal note on Bellman <a class="register-key note-reference" id="note-ref-bellman" href="#bellman" aria-label="Note 2: On Bellman">2</a></p>{% endif %}
+          </td>
+        </tr>
         {% endfor %}
+          </tbody>
+          <tfoot role="rowgroup"><tr role="row">
+            <th scope="row" colspan="3" role="rowheader">Total carried <span>{{ closed_entries }} closed entries</span></th>
+            <td class="total-months" role="cell">{{ total_months }}</td>
+            <td role="cell">Whole months</td>
+          </tr></tfoot>
+        </table>
       </section>
       {% endif %}
 
@@ -172,7 +217,7 @@
         <p class="background-note">{{ about.background }}</p>
         {% for note in about.notes %}
         <section class="margin-note" id="{{ note.id }}" aria-labelledby="{{ note.id }}-title">
-          <h3 id="{{ note.id }}-title"><span class="note-number">[{{ note.number }}]</span> {{ note.title }}</h3>
+          <h3 id="{{ note.id }}-title"><a class="register-key note-backlink" href="#note-ref-{{ note.id }}" aria-label="Back to reference {{ note.number }}">{{ note.number }}</a> {{ note.title }}</h3>
           <p>{{ note.text }}</p>
         </section>
         {% endfor %}

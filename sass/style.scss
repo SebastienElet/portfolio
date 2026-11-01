@@ -8,6 +8,7 @@
   --accent: #a02722;
   --content-width: 70rem;
   --gutter: clamp(1.25rem, 4vw, 3rem);
+  --machine-type: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 * {
@@ -108,15 +109,16 @@ a:hover {
   clip-path: none;
 }
 
-.print-profiles {
+.print-profiles,
+.print-period {
   display: none;
 }
 
 .stamp,
-.entry-number,
 .register-digits,
+.register-key,
 .period {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-family: var(--machine-type);
 }
 
 .stamp {
@@ -188,8 +190,14 @@ h1 {
 }
 
 h2 {
-  font-size: 1.5rem;
-  letter-spacing: -0.025em;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--rule);
+  border-block-color: var(--ink);
+  background: var(--enamel);
+  font-family: var(--machine-type);
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 h3 {
@@ -221,11 +229,26 @@ p {
   letter-spacing: -0.025em;
 }
 
-.note-reference {
+.register-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--accent);
+  background: var(--enamel);
   color: var(--accent);
-  font-size: 0.75rem;
-  vertical-align: super;
-  white-space: nowrap;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  text-decoration: none;
+  vertical-align: 0.15em;
+}
+
+.register-key:hover {
+  background: var(--accent);
+  color: var(--paper);
 }
 
 .practice {
@@ -233,64 +256,153 @@ p {
   margin: 1rem 0 1.25rem;
 }
 
-.object-note {
+.maker-plate {
   align-self: start;
-  padding-left: 1.25rem;
-  border-left: 2px solid var(--accent);
+  padding: 1rem;
+  border: 1px solid var(--ink);
+  border-block: 3px double var(--ink);
+  background: var(--enamel);
   font-size: 0.9375rem;
 }
 
-.object-note p:first-child {
-  margin-top: 0;
+.maker-plate .stamp {
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
 }
 
-.object-note p:last-child {
+.maker-plate p:last-child {
   margin-bottom: 0;
 }
 
 .record-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 14rem;
-  gap: 4rem;
   padding-block: 2.5rem 4rem;
 }
 
-.record > section + section {
+.record > section + section,
+.notes {
   margin-top: 3rem;
 }
 
 .section-heading {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
+  align-items: stretch;
   justify-content: space-between;
-  gap: 0.5rem 1rem;
+  border: 1px solid var(--rule);
+  border-block-color: var(--ink);
+  background: var(--enamel);
+}
+
+.section-heading h2 {
+  border: 0;
+}
+
+.section-heading > .stamp {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-left: 1px solid var(--rule);
 }
 
 .professional-summary {
-  margin-block: 1.25rem 2rem;
+  max-width: 75ch;
+  margin-block: 1.25rem;
 }
 
-.ledger-labels,
-.ledger-entry {
-  display: grid;
-  grid-template-columns: 2rem 8rem minmax(0, 1fr);
-  column-gap: 1rem;
-}
-
-.ledger-labels {
-  padding-block: 0.625rem;
-  border-block: 1px solid var(--ink);
-}
-
-.ledger-entry {
-  padding-block: 1.5rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.entry-number {
+.ledger-basis {
+  max-width: 80ch;
+  margin-block: 1rem 1.5rem;
   color: var(--muted);
   font-size: 0.875rem;
+}
+
+.career-ledger {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.career-ledger th,
+.career-ledger td {
+  padding: 1.25rem 0.75rem;
+  border: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+.career-ledger thead th {
+  padding-block: 0.75rem;
+  border-block-color: var(--ink);
+  background: var(--enamel);
+  font-family: var(--machine-type);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.career-ledger thead th:nth-child(1) {
+  width: 3.5rem;
+}
+
+.career-ledger thead th:nth-child(2),
+.career-ledger thead th:nth-child(3) {
+  width: 6.875rem;
+}
+
+.career-ledger thead th:nth-child(4) {
+  width: 6rem;
+}
+
+.entry-number,
+.entry-from,
+.entry-to,
+.entry-months {
+  color: var(--muted);
+  font-family: var(--machine-type);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.present {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.career-ledger .entry-months {
+  text-align: right;
+}
+
+.career-ledger tfoot th,
+.career-ledger tfoot td {
+  padding-block: 1rem;
+  border-block: 3px double var(--ink);
+  background: var(--enamel);
+  font-family: var(--machine-type);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.career-ledger tfoot th {
+  width: auto;
+}
+
+.career-ledger tfoot span {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.career-ledger .total-months {
+  text-align: right;
+  font-size: 1.0625rem;
+  letter-spacing: 0;
 }
 
 .period {
@@ -298,10 +410,6 @@ p {
   color: var(--muted);
   font-size: 0.8125rem;
   line-height: 1.75;
-}
-
-.ledger-entry .period time {
-  display: block;
 }
 
 .organization {
@@ -332,20 +440,15 @@ li::marker {
 }
 
 .entry-note {
-  color: var(--accent);
   font-size: 0.875rem;
 }
 
 .inventory article {
   display: grid;
-  grid-template-columns: 10rem minmax(0, 1fr);
+  grid-template-columns: 13rem minmax(0, 1fr);
   gap: 1rem;
-  padding-block: 1rem;
+  padding: 1rem;
   border-bottom: 1px solid var(--rule);
-}
-
-.inventory h2 {
-  margin-bottom: 0.5rem;
 }
 
 .skill-label h3 {
@@ -372,18 +475,22 @@ li::marker {
 }
 
 #education article {
-  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--rule);
 }
 
 #education .period {
-  margin-top: 0.25rem;
+  white-space: nowrap;
 }
 
 .interests ul {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem 1.5rem;
-  padding: 0;
+  padding: 0 1rem;
   list-style: none;
 }
 
@@ -392,36 +499,37 @@ li::marker {
 }
 
 .notes {
-  padding-top: 0.25rem;
   font-size: 0.9375rem;
-}
-
-.notes h2 {
-  color: var(--muted);
-  font-size: 1rem;
 }
 
 .background-note {
+  max-width: 75ch;
   margin-block: 1.25rem 2rem;
 }
 
-.margin-note {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--rule);
-}
-
-.notes h3 {
-  font-size: 0.9375rem;
-}
-
-.note-number {
-  color: var(--accent);
-  font-weight: 400;
-}
-
+.margin-note,
 .off-duty {
-  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: 0.5rem 1rem;
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.margin-note h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.margin-note p,
+.off-duty p {
+  max-width: 70ch;
+  margin: 0;
+}
+
+.off-duty h3 {
+  grid-row: span 2;
 }
 
 address {
@@ -444,20 +552,103 @@ blockquote {
 }
 
 @media (max-width: 60rem) {
-  .introduction,
-  .record-layout {
-    grid-template-columns: minmax(0, 1fr);
+  .introduction {
+    grid-template-columns: minmax(0, 1fr) 12rem;
     gap: 2rem;
   }
 
-  .object-note {
+  .intro {
+    max-width: none;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .introduction {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .maker-plate {
     max-width: 30rem;
   }
 
-  .notes {
-    max-width: 40rem;
-    padding-top: 1.5rem;
-    border-top: 3px double var(--ink);
+  .career-ledger,
+  .career-ledger thead,
+  .career-ledger tbody,
+  .career-ledger tfoot {
+    display: block;
+  }
+
+  .career-ledger tr {
+    display: grid;
+    grid-template-columns: 1.5rem minmax(0, 1fr) minmax(0, 1fr) 3rem;
+    column-gap: 0.25rem;
+  }
+
+  .career-ledger th,
+  .career-ledger td {
+    width: auto;
+    padding: 0.75rem 0;
+    border: 0;
+  }
+
+  .career-ledger thead {
+    padding-inline: 0.5rem;
+    border: 1px solid var(--ink);
+    background: var(--enamel);
+  }
+
+  .career-ledger thead th:nth-child(n) {
+    width: auto;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+
+  .career-ledger thead th:last-child {
+    position: absolute;
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+    padding: 0;
+  }
+
+  .ledger-entry {
+    margin-top: 0.75rem;
+    padding: 0 0.5rem 1rem;
+    border: 1px solid var(--rule);
+  }
+
+  .career-ledger .entry-content {
+    grid-column: 1 / -1;
+    padding-block: 0.5rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .career-ledger tfoot {
+    margin-top: 1rem;
+    padding-inline: 0.5rem;
+    border-block: 3px double var(--ink);
+    background: var(--enamel);
+  }
+
+  .career-ledger tfoot th,
+  .career-ledger tfoot td {
+    border: 0;
+  }
+
+  .career-ledger tfoot th {
+    grid-column: 1 / 4;
+  }
+
+  .career-ledger tfoot td:last-child {
+    grid-column: 1 / -1;
+    padding-top: 0;
+  }
+
+  .margin-note,
+  .off-duty {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -487,10 +678,6 @@ blockquote {
     gap: 0.375rem;
   }
 
-  .register .stamp {
-    font-size: 0.8125rem;
-  }
-
   .register-digits {
     font-size: 1.375rem;
   }
@@ -499,55 +686,21 @@ blockquote {
     width: 1.5rem;
   }
 
-  .cv-header {
-    padding-block: 2rem;
-  }
-
-  .introduction {
-    margin-top: 1.75rem;
-    gap: 1.5rem;
-  }
-
-  .object-note {
-    font-size: 0.875rem;
+  .section-heading > .stamp {
+    display: none;
   }
 
   .record-layout {
     padding-top: 2rem;
   }
 
-  .ledger-labels {
-    display: none;
-  }
-
-  .professional-summary {
-    margin-bottom: 1.5rem;
-  }
-
-  .ledger-entry {
-    grid-template-columns: 1.75rem minmax(0, 1fr);
-    gap: 0.5rem 0.75rem;
-    border-top: 1px solid var(--rule);
-    border-bottom: 0;
-  }
-
-  .ledger-entry .period {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 0.35rem;
-  }
-
-  .ledger-entry .period time {
-    display: inline;
-  }
-
-  .entry-content {
-    grid-column: 2;
-  }
-
   .inventory article {
     grid-template-columns: 6.5rem minmax(0, 1fr);
     gap: 0.75rem;
+  }
+
+  #education article {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
