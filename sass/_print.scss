@@ -1,113 +1,44 @@
-@page {
-  size: A4;
-  margin: 15mm;
-}
+@page { size: A4; margin: 15mm; }
 
 @media print {
-  .site-header,
-  .site-footer,
-  nav,
-  .skip-link {
-    display: none;
-  }
-
-  :focus-visible,
-  .social-links a:focus-visible {
-    outline: none;
-  }
-
-  body {
-    background: #fff;
-    color: #000;
-    font-size: 10pt;
-    line-height: 1.35;
-  }
-
-  .cv-header {
-    margin: 0;
-    padding: 0;
-  }
-
-  main {
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  h1 {
-    font-size: 24pt;
-    letter-spacing: normal;
-  }
-
-  h2 {
-    margin-bottom: 3mm;
-    font-size: 14pt;
-  }
-
-  h3,
-  .role {
-    font-size: 11pt;
-  }
-
-  .role {
-    margin-bottom: 2mm;
-  }
-
-  h1,
-  h2,
-  h3,
-  .organization,
-  .period {
-    break-after: avoid;
-  }
-
-  section {
-    margin-top: 6mm;
-  }
-
-  article + article {
-    margin-top: 5mm;
-  }
-
-  p {
-    margin-block: 2mm;
-    orphans: 3;
-    widows: 3;
-  }
-
-  article,
-  figure,
-  li {
-    break-inside: avoid;
-  }
-
-  ul {
-    margin-block: 2mm;
-  }
-
-  li + li {
-    margin-top: 0;
-  }
-
-  a,
-  h2,
-  .role,
-  .organization,
-  .period {
-    color: #000;
-  }
-
-  .keywords {
-    gap: 1mm 3mm;
-  }
-
-  #profiles a {
-    padding: 0;
-  }
-
-  #profiles a[href]::after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
-  }
+  :root { color-scheme: light; --ink: #000; --muted: #000; --accent: #000; --paper: #fff; --line: #bbb; }
+  *, *::before, *::after { animation: none !important; transition: none !important; text-shadow: none !important; box-shadow: none !important; }
+  .site-header, .site-footer, nav, .skip-link, .hero-art, .hero-shade, .portrait-field, .hero-foot, .hero-role, .hero-description, .hero .button, .screen-title, .section-heading, .intro-statement, .personal-line, #work, #impact, #writing, #contact, .log-header .eyebrow, .log-count, .mission-number, .foundations .eyebrow { display: none; }
+  :focus-visible { outline: none; }
+  body { background: #fff; color: #000; font-size: 10pt; line-height: 1.35; }
+  main, .frame { width: auto; max-width: none; margin: 0; padding: 0; }
+  .hero { display: block; min-height: 0; background: none; }
+  .hero-copy { padding: 0; }
+  h1 { max-width: none; font-size: 24pt; letter-spacing: normal; text-transform: none; }
+  .print-name, .print-contact { display: block; }
+  h2, .foundations h2, .log-header h2, #interests h2 { font-size: 14pt; letter-spacing: normal; text-transform: none; margin-bottom: 3mm; }
+  h3, h4, .mission-meta h3, .mission-body h4 { font-size: 11pt; text-transform: none; letter-spacing: normal; }
+  .introduction, .introduction-copy, .impact-heading, .mission, .foundations-grid { display: block; margin: 0; padding: 0; }
+  .resume-summary { max-width: none; margin-block: 3mm; }
+  .role { margin-block: 2mm; font-size: 10pt; }
+  .log-header { display: block; padding: 0; }
+  .mission-log, .foundations, .additional-section, #interests { margin-top: 6mm; padding: 0; background: none; }
+  .mission { border: 0; break-inside: avoid; margin-top: 5mm; }
+  .mission-meta { margin: 0; }
+  .period, .location { display: inline; font-size: 9pt; margin: 0; }
+  .location::before { content: " · "; }
+  .mission-body { margin-top: 2mm; }
+  .mission-body > p { margin-top: 2mm; }
+  .background-details { margin-top: 6mm; }
+  .background-details article + article { margin-top: 3mm; }
+  .skill-row { padding-block: 2mm; border: 0; }
+  .skill-row h3 { font-size: 10pt; }
+  .skill-row h3 span { color: #000; font-size: 9pt; }
+  .keywords { gap: 1mm 3mm; margin-top: 1mm; }
+  p { margin-block: 2mm; orphans: 3; widows: 3; }
+  ul { margin-block: 2mm; }
+  li + li { margin-top: 0; }
+  .mission-body li { padding-left: 0; }
+  h1, h2, h3, h4, .period, .location { break-after: avoid; }
+  h1, h2, h3, h4, figure, li { break-inside: avoid; }
+  .reveal { opacity: 1; transform: none; }
+  .social-links { display: block; margin-block: 2mm; }
+  .social-links a { padding: 0; font-size: 9pt; }
+  .social-links a[href]::after { content: " (" attr(href) ")"; }
+  .social-links svg { display: none; }
 }
