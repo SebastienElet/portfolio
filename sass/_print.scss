@@ -4,15 +4,26 @@
 }
 
 @media print {
+  .sheet-row {
+    display: block;
+  }
+
   .site-header,
   .site-footer,
   nav,
-  .skip-link {
+  .skip-link,
+  .introduction .field-label,
+  .intro-role,
+  .opening,
+  .intro-paragraph,
+  .cv-link,
+  .personal-note,
+  .contact,
+  #cv-title {
     display: none;
   }
 
-  :focus-visible,
-  .social-links a:focus-visible {
+  :focus-visible {
     outline: none;
   }
 
@@ -23,11 +34,6 @@
     line-height: 1.35;
   }
 
-  .cv-header {
-    margin: 0;
-    padding: 0;
-  }
-
   main {
     width: auto;
     max-width: none;
@@ -35,42 +41,62 @@
     padding: 0;
   }
 
+  .introduction,
+  .cv-header,
+  .curriculum {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
   h1 {
+    margin: 0 0 2mm;
     font-size: 24pt;
     letter-spacing: normal;
   }
 
-  h2 {
+  .cv-section {
+    margin-top: 6mm;
+  }
+
+  .cv-section .field-label {
     margin-bottom: 3mm;
-    font-size: 14pt;
+    padding: 0;
+    font-size: 12pt;
+    letter-spacing: normal;
+    text-transform: none;
   }
 
-  h3,
-  .role {
-    font-size: 11pt;
+  h4 {
+    margin-bottom: 1mm;
+    font-size: 12pt;
   }
 
-  .role {
-    margin-bottom: 2mm;
+  .role,
+  .organization {
+    font-size: 10pt;
+  }
+
+  .period {
+    font-size: 9pt;
   }
 
   h1,
-  h2,
   h3,
+  h4,
   .organization,
   .period {
     break-after: avoid;
   }
 
-  section {
-    margin-top: 6mm;
-  }
-
-  article + article {
+  .cv-entries article + article {
     margin-top: 5mm;
+    padding: 0;
+    border: 0;
   }
 
-  p {
+  p,
+  ul {
     margin-block: 2mm;
     orphans: 3;
     widows: 3;
@@ -82,19 +108,19 @@
     break-inside: avoid;
   }
 
-  ul {
-    margin-block: 2mm;
-  }
-
   li + li {
     margin-top: 0;
   }
 
   a,
-  h2,
+  .field-label,
   .role,
   .organization,
   .period {
+    color: #000;
+  }
+
+  li::marker {
     color: #000;
   }
 
@@ -102,12 +128,21 @@
     gap: 1mm 3mm;
   }
 
-  #profiles a {
-    padding: 0;
-  }
+  .social-links {
+    display: block;
+    margin-block: 2mm;
 
-  #profiles a[href]::after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
+    a {
+      padding: 0;
+      font-size: 9pt;
+    }
+
+    a[href]::after {
+      content: " (" attr(href) ")";
+    }
+
+    svg {
+      display: none;
+    }
   }
 }

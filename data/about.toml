@@ -1,0 +1,41 @@
+[intro]
+label = "From the countryside"
+role = "Staff Engineer · Node.js / TypeScript"
+opening = "I live in the countryside. I like the quiet. My work is in software."
+paragraph = "I got into development by repairing and using open-source projects. Friends and colleagues describe me as a discreet worker who listens."
+
+[[notes]]
+id = "now"
+title = "At the moment"
+paragraphs = [
+  "I don't write code anymore. I spend my time on product and on improving the harness that lets AI agents do the coding.",
+  "I don't think languages, frameworks and tools are optimized for AI. There is work to do there."
+]
+
+[[notes]]
+id = "care"
+title = "The whole chain"
+paragraphs = [
+  "I like understanding the whole chain: hardware architecture, networks, software. Quality and security matter to me.",
+  "I once dropped a production database. That was not my best work."
+]
+
+[[notes]]
+id = "bellman"
+title = "What I've built"
+paragraphs = [
+  "Bellman is the project I'm proudest of. It grew fast, then ran out of funds.",
+  "I worked on its move to SaaS, data imports and banking integration. The details are in my CV."
+]
+
+[[notes]]
+id = "outside"
+title = "Outside work"
+paragraphs = [
+  "Away from work, I lose track of time with archery, motorsport and AI. Archery, especially.",
+  "An object that says something about me: my mechanical calculator. I'll let you decide what."
+]
+
+[contact]
+title = "Contact"
+paragraph = "You can find me on GitHub and LinkedIn."

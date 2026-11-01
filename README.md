@@ -28,6 +28,7 @@ zola build
 `static/CNAME` into the generated site. The resume data stays in `resume.json`
 at the repository root and is loaded directly by the homepage template to render
 the CV. Update that file to change the CV content.
+The personal introduction and notes are editable in `data/about.toml`.
 
 ## Layout and sharing
 
