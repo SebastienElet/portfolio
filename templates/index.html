@@ -34,9 +34,6 @@
       <header class="introduction sheet-row" id="notes">
         <div class="field-label" aria-hidden="true">
           <p>{{ about.intro.label }}</p>
-          <svg class="field-mark" viewBox="0 0 120 42" width="120" height="42" fill="none" focusable="false">
-            <path d="M1 16c20 0 27-7 48-7s39 10 70 10M1 27c23 0 40-7 62-7s35 6 56 6M1 38c23 0 45-6 67-6s36 3 51 3" stroke="currentColor"/>
-          </svg>
         </div>
         <div class="introduction-copy">
           <h1>{{ resume.basics.name }}</h1>
@@ -45,13 +42,18 @@
           <p class="intro-paragraph">{{ about.intro.paragraph }}</p>
           <a class="cv-link" href="#cv">Read my CV <span aria-hidden="true">↓</span></a>
         </div>
+        <svg class="field-horizon" viewBox="0 0 960 160" width="960" height="160" fill="none" aria-hidden="true" focusable="false">
+          <path class="horizon-line" d="M1 42c123-18 218-11 314-3s162 9 237 6 224-21 407-10"/>
+          <path d="M1 65c209-26 361-14 551-20M1 86c176-27 342-23 551-41M1 117c175-38 373-41 551-72M1 155c192-51 399-67 551-110M552 45c118 18 254 24 407 20M552 45c123 31 242 51 407 59M552 45c111 39 245 80 407 106"/>
+        </svg>
       </header>
 
       {% for note in about.notes %}
       <section class="personal-note sheet-row" id="{{ note.id }}" aria-labelledby="{{ note.id }}-title">
-        <h2 class="field-label" id="{{ note.id }}-title">{{ note.title }}</h2>
+        <h2 class="field-label" id="{{ note.id }}-title"><span class="note-number">Note {{ loop.index }}</span>{{ note.title }}</h2>
         <div class="prose">
           {% for paragraph in note.paragraphs %}<p>{{ paragraph }}</p>{% endfor %}
+          {% if note.aside %}<p class="aside">{{ note.aside }}</p>{% endif %}
         </div>
       </section>
       {% endfor %}
@@ -76,15 +78,18 @@
       </header>
 
       {% if resume.work %}
-      <section class="cv-section sheet-row" id="experience" aria-labelledby="experience-title">
+      <section class="cv-section work-section" id="experience" aria-labelledby="experience-title">
         <h3 class="field-label" id="experience-title">Work experience</h3>
         <div class="cv-entries">
         {% for experience in resume.work %}
-        <article>
-          <h4>{{ experience.position }}</h4>
+        <article class="work-entry sheet-row">
+          <div class="work-meta">
           {% set organization = experience.name | default(value=experience.company | default(value="")) %}
           {% if organization or experience.location %}<p class="organization">{{ organization }}{% if organization and experience.location %} · {% endif %}{% if experience.location %}{{ experience.location }}{% endif %}</p>{% endif %}
           {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
+          </div>
+          <div class="work-description">
+          <h4>{{ experience.position }}</h4>
           {% if experience.summary %}<p>{{ experience.summary }}</p>{% endif %}
           {% if experience.highlights %}
           <ul>
@@ -93,6 +98,7 @@
             {% endfor %}
           </ul>
           {% endif %}
+          </div>
         </article>
         {% endfor %}
         </div>
