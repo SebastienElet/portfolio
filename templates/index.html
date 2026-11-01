@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
+{% block nav_links %}
+<li><a href="#work">Work</a></li>
+<li><a href="#experience">Career</a></li>
+<li><a href="#writing">Writing</a></li>
+<li><a href="#contact">Let’s talk <span aria-hidden="true">↗</span></a></li>
+{% endblock nav_links %}
+
 {% component resume.date(value: string) -%}
 <time datetime="{{ value }}">
   {%- if value | length == 4 -%}
@@ -24,11 +31,29 @@
 
 {% block content %}
 {% set resume = load_data(path="resume.json") %}
-      <header class="cv-header">
-        <h1>{{ resume.basics.name }}</h1>
-        {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait of {{ resume.basics.name }}" width="96" height="96">{% endif %}
-        {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
-        {% if resume.basics.summary %}<p>{{ resume.basics.summary }}</p>{% endif %}
+      <header class="hero cv-header">
+        <div class="hero-light" aria-hidden="true"></div>
+        <div class="hero-inner frame">
+          <div class="hero-copy">
+            <p class="eyebrow">Staff Engineer. AI-augmented.</p>
+            <h1><span class="screen-headline">Velocity.<br><span class="titanium">Built to last.</span></span><span class="print-name">{{ resume.basics.name }}</span></h1>
+            <p class="hero-description">I’m {{ resume.basics.name }}. I build and scale<br class="desktop-break"> B2B SaaS, without trading stability for speed.</p>
+            <a class="button" href="#work">Explore my work <span aria-hidden="true">↓</span></a>
+          </div>
+          <figure class="hero-portrait">
+            <div class="portrait-orbit" aria-hidden="true"></div>
+            <img src="/images/portrait.jpg" alt="Sébastien Elet smiling, wearing glasses and a dark hoodie" width="460" height="460" fetchpriority="high">
+            <figcaption>{{ resume.basics.name }}<span>Node.js / TypeScript</span></figcaption>
+          </figure>
+        </div>
+        <div class="hero-foot frame">
+          <p>Currently <span>Staff Engineer at Septeo ADB</span></p>
+          {% include "partials/social-links.html" %}
+          <a class="scroll-cue" href="#work">Scroll to explore <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="print-intro">
+          {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
+          {% if resume.basics.summary %}<p>{{ resume.basics.summary }}</p>{% endif %}
         {% if resume.basics.email or resume.basics.phone or resume.basics.url %}
         <address>
           <ul>
@@ -39,17 +64,97 @@
         </address>
         {% endif %}
         {% include "partials/social-links.html" %}
+        </div>
       </header>
 
+      <section id="work" class="work-section" aria-labelledby="work-title">
+        <div class="frame">
+          <p class="eyebrow reveal">The work behind the software</p>
+          <div class="section-intro">
+            <h2 id="work-title" class="display-heading reveal">Complex systems.<br><span class="muted">Human outcomes.</span></h2>
+            <p class="intro-description reveal">{{ resume.basics.summary }}</p>
+          </div>
+        </div>
+        <div class="migration-visual">
+          <svg class="signal-field" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 540" fill="none" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="signal" x1="0" y1="270" x2="1440" y2="270" gradientUnits="userSpaceOnUse"><stop stop-color="#756cb5" stop-opacity="0"/><stop offset=".28" stop-color="#ab8cba"/><stop offset=".53" stop-color="#ffe1ba"/><stop offset=".73" stop-color="#a98365"/><stop offset="1" stop-color="#a98365" stop-opacity="0"/></linearGradient>
+              <radialGradient id="signal-glow"><stop stop-color="#db9961" stop-opacity=".3"/><stop offset="1" stop-color="#db9961" stop-opacity="0"/></radialGradient>
+            </defs>
+            <ellipse cx="760" cy="282" rx="600" ry="220" fill="url(#signal-glow)"/>
+            <g stroke="url(#signal)">
+              <path d="M-80 40C360 40 430 270 740 270S1150 40 1520 40"/>
+              <path d="M-80 85C350 85 450 272 740 272S1150 85 1520 85"/>
+              <path d="M-80 130C370 130 450 274 740 274S1150 130 1520 130"/>
+              <path d="M-80 175C370 175 450 276 740 276S1150 175 1520 175"/>
+              <path d="M-80 220C380 220 440 278 740 278S1150 220 1520 220"/>
+              <path d="M-80 265C380 265 440 280 740 280S1150 265 1520 265"/>
+              <path d="M-80 310C380 310 440 282 740 282S1150 310 1520 310"/>
+              <path d="M-80 355C370 355 450 284 740 284S1150 355 1520 355"/>
+              <path d="M-80 400C370 400 450 286 740 286S1150 400 1520 400"/>
+              <path d="M-80 445C350 445 450 288 740 288S1150 445 1520 445"/>
+              <path d="M-80 490C360 490 430 290 740 290S1150 490 1520 490"/>
+            </g>
+          </svg>
+          <div class="migration-caption frame reveal">
+            <h3>From single tenant.<br>To SaaS.</h3>
+            <p>Data models redesigned. Migration engines built. Teams supported through change.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="impact" class="impact-section frame" aria-labelledby="impact-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Selected impact · Bellman</p>
+          <h2 id="impact-title" class="display-heading">Built for the real world.</h2>
+          <p class="section-description">Architecture is only as good as what it makes possible.</p>
+        </div>
+        <div class="impact-grid">
+          <article class="impact-tile transactions reveal">
+            <p class="stat titanium">≈2M</p>
+            <h3>Bank transactions imported.</h3>
+            <p>An in-house EBICS integration that eliminated duplicate transactions.</p>
+            <a href="#role-3">The integration <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="impact-tile clients reveal">
+            <p class="stat titanium">90</p>
+            <h3>Clients migrated to SaaS.</h3>
+            <p>A complete data model redesign, carried through to production.</p>
+            <a href="#role-3">The architecture <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="impact-tile migration reveal">
+            <p class="stat titanium">6–8<span>weeks</span></p>
+            <h3>Down from six months.</h3>
+            <p>A migration engine supporting ten competing software products.</p>
+            <a href="#role-3">The migration <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="impact-tile payments reveal">
+            <p class="stat titanium">130,000</p>
+            <h3>Cheques processed.</h3>
+            <p>Electronic cheque submission, automated from the ground up.</p>
+            <a href="#role-4">The automation <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </section>
+
       {% if resume.work %}
-      <section id="experience" aria-labelledby="experience-title">
-        <h2 id="experience-title">Work Experience</h2>
+      <section id="experience" class="career-section frame" aria-labelledby="experience-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">The full picture</p>
+          <h2 id="experience-title" class="display-heading">A career in building.</h2>
+          <p class="section-description">From cloud telephony to SaaS. From developer to Staff Engineer.</p>
+        </div>
+        <div class="career-list">
         {% for experience in resume.work %}
-        <article>
-          <h3>{{ experience.position }}</h3>
+        <article id="role-{{ loop.index }}" class="career-entry">
+          <div class="career-meta">
           {% set organization = experience.name | default(value=experience.company | default(value="")) %}
-          {% if organization or experience.location %}<p class="organization">{{ organization }}{% if organization and experience.location %} · {% endif %}{% if experience.location %}{{ experience.location }}{% endif %}</p>{% endif %}
+          <p class="organization">{{ organization }}</p>
           {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
+          {% if experience.location %}<p class="location">{{ experience.location }}</p>{% endif %}
+          </div>
+          <div class="career-content">
+          <h3>{{ experience.position }}</h3>
           {% if experience.summary %}<p>{{ experience.summary }}</p>{% endif %}
           {% if experience.highlights %}
           <ul>
@@ -58,18 +163,25 @@
             {% endfor %}
           </ul>
           {% endif %}
+          </div>
         </article>
         {% endfor %}
+        </div>
       </section>
       {% endif %}
 
       {% if resume.skills %}
-      <section id="skills" aria-labelledby="skills-title">
-        <h2 id="skills-title">Skills</h2>
+      <section id="skills" class="skills-section frame" aria-labelledby="skills-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Tech specs</p>
+          <h2 id="skills-title" class="display-heading">The engineering toolkit.</h2>
+          <p class="section-description">Node.js / TypeScript at the core. The whole stack in view.</p>
+        </div>
+        <div class="skills-grid">
         {% for skill in resume.skills %}
         <article>
           <h3>{{ skill.name }}</h3>
-          {% if skill.level %}<p>{{ skill.level }}</p>{% endif %}
+          {% if skill.level %}<p class="skill-level">{{ skill.level }}</p>{% endif %}
           {% if skill.keywords %}
           <ul class="keywords">
             {% for keyword in skill.keywords %}
@@ -79,12 +191,14 @@
           {% endif %}
         </article>
         {% endfor %}
+        </div>
       </section>
       {% endif %}
 
       {% if resume.education %}
-      <section id="education" aria-labelledby="education-title">
+      <section id="education" class="education-section frame" aria-labelledby="education-title">
         <h2 id="education-title">Education</h2>
+        <div class="education-grid">
         {% for education in resume.education %}
         <article>
           <h3>{{ education.studyType }}{% if education.studyType and education.area %} — {% endif %}{{ education.area }}</h3>
@@ -92,11 +206,12 @@
           {{ <resume.period start={education.startDate | default(value="")} end={education.endDate | default(value="")} /> }}
         </article>
         {% endfor %}
+        </div>
       </section>
       {% endif %}
 
       {% if resume.publications %}
-      <section id="publications" aria-labelledby="publications-title">
+      <section id="publications" class="frame" aria-labelledby="publications-title">
         <h2 id="publications-title">Publications</h2>
         {% for publication in resume.publications %}
         <article>
@@ -110,8 +225,8 @@
       {% endif %}
 
       {% if resume.interests %}
-      <section id="interests" aria-labelledby="interests-title">
-        <h2 id="interests-title">Interests</h2>
+      <section id="interests" class="interests-section frame" aria-labelledby="interests-title">
+        <h2 id="interests-title">Away from the keyboard.</h2>
         <ul>
           {% for interest in resume.interests %}
           <li>{{ interest.name }}{% if interest.keywords %} — {{ interest.keywords | join(sep=", ") }}{% endif %}</li>
@@ -121,7 +236,7 @@
       {% endif %}
 
       {% if resume.references %}
-      <section id="references" aria-labelledby="references-title">
+      <section id="references" class="frame" aria-labelledby="references-title">
         <h2 id="references-title">References</h2>
         {% for reference in resume.references %}
         <figure>
@@ -131,5 +246,31 @@
         {% endfor %}
       </section>
       {% endif %}
+
+      <section id="writing" class="writing-section frame" aria-labelledby="writing-title">
+        <div class="writing-mark" aria-hidden="true">Aa<span>↗</span></div>
+        <div class="reveal">
+          <p class="eyebrow">Writing · Coming soon</p>
+          <h2 id="writing-title" class="display-heading">Ideas, in the making.</h2>
+          <p class="section-description">A space for the thinking behind the building.</p>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section" aria-labelledby="contact-title">
+        <div class="contact-light" aria-hidden="true"></div>
+        <div class="frame reveal">
+          <p class="eyebrow">The next conversation</p>
+          <h2 id="contact-title">Let’s build<br><span class="titanium">what’s next.</span></h2>
+          <p>Good engineering starts with a conversation.</p>
+          <div class="contact-links">
+          {% if resume.basics.email %}<a href="mailto:{{ resume.basics.email }}">Email <span aria-hidden="true">↗</span></a>{% endif %}
+          {% for profile in resume.basics.profiles %}
+          {% if profile.network == "LinkedIn" or profile.network == "GitHub" %}
+            <a href="{{ profile.url }}" rel="me noopener">{{ profile.network }} <span aria-hidden="true">↗</span></a>
+          {% endif %}
+          {% endfor %}
+          </div>
+        </div>
+      </section>
 
 {% endblock content %}
