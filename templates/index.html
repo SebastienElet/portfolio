@@ -24,48 +24,123 @@
 
 {% block content %}
 {% set resume = load_data(path="resume.json") %}
-      <header class="cv-header">
-        <h1>{{ resume.basics.name }}</h1>
-        {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait of {{ resume.basics.name }}" width="96" height="96">{% endif %}
-        {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
-        {% if resume.basics.summary %}<p>{{ resume.basics.summary }}</p>{% endif %}
-        {% if resume.basics.email or resume.basics.phone or resume.basics.url %}
-        <address>
+      <header class="hero cv-header">
+        <div class="hero-art" aria-hidden="true"></div>
+        <figure class="hero-portrait">
+          <img src="/images/portrait.jpg" alt="Sébastien Elet, smiling, wearing glasses and a dark hoodie." width="460" height="460" fetchpriority="high">
+          <figcaption>{{ resume.basics.name }} <span>Staff Engineer</span></figcaption>
+        </figure>
+        <div class="hero-content">
+          <p class="eyebrow screen-only">Staff Engineer / B2B SaaS</p>
+          <h1><span class="screen-only">Move fast.<br>Build to last.</span><span class="print-only">{{ resume.basics.name }}</span></h1>
+          <p class="hero-intro screen-only">I’m Sébastien. I build and scale SaaS platforms without trading stability for speed.</p>
+          <a class="text-link hero-link screen-only" href="#impact">Explore my work <span aria-hidden="true">↗</span></a>
+          {% if resume.basics.label %}<p class="role print-only">{{ resume.basics.label }}</p>{% endif %}
+          {% if resume.basics.summary %}<p class="print-only">{{ resume.basics.summary }}</p>{% endif %}
+        </div>
+        <div class="hero-bottom screen-only">
+          <p>Node.js <span aria-hidden="true">/</span> TypeScript <span aria-hidden="true">/</span> AI-augmented</p>
+          <a href="#approach">The story so far <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="print-only print-contact">
+          <address>
           <ul>
             {% if resume.basics.email %}<li><a href="mailto:{{ resume.basics.email }}">{{ resume.basics.email }}</a></li>{% endif %}
             {% if resume.basics.phone %}<li><a href="tel:{{ resume.basics.phone }}">{{ resume.basics.phone }}</a></li>{% endif %}
             {% if resume.basics.url %}<li><a href="{{ resume.basics.url }}">{{ resume.basics.url }}</a></li>{% endif %}
           </ul>
-        </address>
-        {% endif %}
-        {% include "partials/social-links.html" %}
+          </address>
+          {% include "partials/social-links.html" %}
+        </div>
       </header>
 
+      <section class="approach section-pad screen-only" id="approach" aria-labelledby="approach-title">
+        <div class="section-heading">
+          <p class="eyebrow">The person behind the platform</p>
+          <h2 id="approach-title">Engineering is<br>a long game.</h2>
+        </div>
+        <div class="narrative reveal">
+          <p>I’ve built cloud call centre systems, helped retail platforms evolve, and led the shift to SaaS in property management.</p>
+          <p>The work changes. The balance stays the same: move the product forward, and keep the systems people depend on steady.</p>
+          <p class="narrative-note">Today, I’m a Staff Engineer at Septeo ADB, leading the condominium management engineering team on Lobby. Node.js and TypeScript are at the heart of my work, with AI as an engineering tool.</p>
+          <a class="text-link" href="#experience">Read the full career <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+
+      <section class="manifesto section-pad screen-only" aria-labelledby="manifesto-title">
+        <h2 class="eyebrow" id="manifesto-title">A working principle</h2>
+        <blockquote class="reveal"><p>Velocity.<br>With stability.</p></blockquote>
+        <p class="manifesto-note">From the architecture to the next release.<br>That’s the balance I build for.</p>
+      </section>
+
+      <section class="impact section-pad screen-only" id="impact" aria-labelledby="impact-title">
+        <div class="impact-heading">
+          <p class="eyebrow">Selected impact / In production</p>
+          <h2 id="impact-title">The work is technical.<br>The impact is human.</h2>
+        </div>
+        <div class="impact-scale reveal">
+          <p class="scale-number">155,000</p>
+          <p class="scale-caption">condominium owners on Lobby.</p>
+          <p class="scale-context">90 property management firms. 681 users.<br>A platform I help lead at Septeo ADB.</p>
+          <a class="text-link" href="#career-1">The current chapter <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="impact-stories">
+          <article class="impact-story reveal">
+            <p class="eyebrow">Bellman / Data migration</p>
+            <h3>Months to weeks.</h3>
+            <p class="story-figure">6 months <span aria-hidden="true">→</span><span class="sr-only">reduced to</span> 6–8 weeks</p>
+            <p>I built an import engine supporting 10 competing software products, removing a barrier to customer acquisition and shortening the migration journey.</p>
+            <a class="text-link" href="#career-3">The migration work <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="impact-story reveal">
+            <p class="eyebrow">Bellman / Banking integration</p>
+            <h3>Trust in every record.</h3>
+            <p class="story-figure">≈ 2 million</p>
+            <p>I replaced a third-party provider with an in-house EBICS integration: approximately 2 million bank transaction records imported, with duplicate transactions eliminated.</p>
+            <a class="text-link" href="#career-3">The integration work <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </section>
+
       {% if resume.work %}
-      <section id="experience" aria-labelledby="experience-title">
-        <h2 id="experience-title">Work Experience</h2>
+      <section class="career section-pad" id="experience" aria-labelledby="experience-title">
+        <div class="career-heading">
+          <div>
+            <p class="eyebrow screen-only">Career / The complete record</p>
+            <h2 id="experience-title"><span class="screen-only">The long run.</span><span class="print-only">Work Experience</span></h2>
+          </div>
+          {% set first_role = resume.work | last %}
+          <p class="career-range screen-only">{{ first_role.startDate | date(format="y", locale="en") }} — Present<br><span>From telecoms to B2B SaaS.</span></p>
+        </div>
         {% for experience in resume.work %}
-        <article>
-          <h3>{{ experience.position }}</h3>
+        <article class="career-chapter" id="career-{{ loop.index }}">
           {% set organization = experience.name | default(value=experience.company | default(value="")) %}
-          {% if organization or experience.location %}<p class="organization">{{ organization }}{% if organization and experience.location %} · {% endif %}{% if experience.location %}{{ experience.location }}{% endif %}</p>{% endif %}
-          {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
-          {% if experience.summary %}<p>{{ experience.summary }}</p>{% endif %}
-          {% if experience.highlights %}
-          <ul>
-            {% for highlight in experience.highlights %}
-            <li>{{ highlight }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
+          <div class="chapter-meta">
+            {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
+            {% if organization %}<h3 class="organization">{{ organization }}</h3>{% endif %}
+            {% if experience.location %}<p class="location">{{ experience.location }}</p>{% endif %}
+          </div>
+          <div class="chapter-content">
+            <h4>{{ experience.position }}</h4>
+            {% if experience.summary %}<p>{{ experience.summary }}</p>{% endif %}
+            {% if experience.highlights %}
+            <ul>
+              {% for highlight in experience.highlights %}
+              <li>{{ highlight }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
         </article>
         {% endfor %}
       </section>
       {% endif %}
 
       {% if resume.skills %}
-      <section id="skills" aria-labelledby="skills-title">
+      <section class="expertise section-pad" id="skills" aria-labelledby="skills-title">
+        <p class="eyebrow screen-only">Across the stack</p>
         <h2 id="skills-title">Skills</h2>
+        <div class="skills-grid">
         {% for skill in resume.skills %}
         <article>
           <h3>{{ skill.name }}</h3>
@@ -79,11 +154,12 @@
           {% endif %}
         </article>
         {% endfor %}
+        </div>
       </section>
       {% endif %}
 
       {% if resume.education %}
-      <section id="education" aria-labelledby="education-title">
+      <section class="education section-pad" id="education" aria-labelledby="education-title">
         <h2 id="education-title">Education</h2>
         {% for education in resume.education %}
         <article>
@@ -96,7 +172,7 @@
       {% endif %}
 
       {% if resume.publications %}
-      <section id="publications" aria-labelledby="publications-title">
+      <section class="section-pad" id="publications" aria-labelledby="publications-title">
         <h2 id="publications-title">Publications</h2>
         {% for publication in resume.publications %}
         <article>
@@ -110,8 +186,8 @@
       {% endif %}
 
       {% if resume.interests %}
-      <section id="interests" aria-labelledby="interests-title">
-        <h2 id="interests-title">Interests</h2>
+      <section class="interests section-pad" id="interests" aria-labelledby="interests-title">
+        <h2 id="interests-title"><span class="screen-only">Beyond the screen.</span><span class="print-only">Interests</span></h2>
         <ul>
           {% for interest in resume.interests %}
           <li>{{ interest.name }}{% if interest.keywords %} — {{ interest.keywords | join(sep=", ") }}{% endif %}</li>
@@ -121,7 +197,7 @@
       {% endif %}
 
       {% if resume.references %}
-      <section id="references" aria-labelledby="references-title">
+      <section class="section-pad" id="references" aria-labelledby="references-title">
         <h2 id="references-title">References</h2>
         {% for reference in resume.references %}
         <figure>
@@ -131,5 +207,26 @@
         {% endfor %}
       </section>
       {% endif %}
+
+      <section class="writing section-pad screen-only" id="writing" aria-labelledby="writing-title">
+        <p class="eyebrow">Writing / Coming soon</p>
+        <div class="writing-content">
+          <h2 id="writing-title">Notes from<br>the work.</h2>
+          <p>A space for thinking about engineering, platforms, and the work between.<br><span>Nothing published here yet.</span></p>
+        </div>
+      </section>
+
+      <section class="contact section-pad screen-only" id="contact" aria-labelledby="contact-title">
+        <p class="eyebrow">A new conversation</p>
+        <h2 id="contact-title">Good work starts<br>with a conversation.</h2>
+        <div class="contact-links">
+          {% if resume.basics.email %}<a class="contact-link" href="mailto:{{ resume.basics.email }}">{{ resume.basics.email }} <span aria-hidden="true">↗</span></a>{% endif %}
+          {% for profile in resume.basics.profiles %}
+          {% if profile.network | lower == "linkedin" or profile.network | lower == "github" %}
+          <a class="contact-link" href="{{ profile.url }}" rel="me noopener">{% if profile.network | lower == "linkedin" %}Let’s connect on LinkedIn{% else %}Find me on GitHub{% endif %} <span aria-hidden="true">↗</span></a>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </section>
 
 {% endblock content %}
