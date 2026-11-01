@@ -4,8 +4,23 @@
 }
 
 @media print {
+  :root {
+    color-scheme: light;
+    --paper: #fff;
+    --ink: #000;
+    --muted: #000;
+    --green: #000;
+    --accent: #000;
+    --yellow: #000;
+    --magenta: #000;
+  }
+
   .site-header,
   .site-footer,
+  .terminal-chrome,
+  .session-command,
+  .command-text,
+  .meta-key,
   nav,
   .skip-link {
     display: none;
@@ -19,8 +34,51 @@
   body {
     background: #fff;
     color: #000;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 10pt;
     line-height: 1.35;
+  }
+
+  .terminal-window {
+    width: auto;
+    margin: 0;
+    border: 0;
+    background: #fff;
+  }
+
+  .section-label {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+
+  .entry-heading,
+  .skill-entry {
+    display: block;
+  }
+
+  .skill-entry {
+    padding: 0;
+
+    + .skill-entry {
+      margin-top: 3mm;
+    }
+  }
+
+  .skill-entry h3::after,
+  .keywords li::before,
+  .keywords li::after,
+  .interest-list li::before {
+    content: none;
+  }
+
+  .tree-list li::marker,
+  .tree-list li:last-child::marker {
+    content: normal;
+    color: #000;
   }
 
   .cv-header {
@@ -42,6 +100,8 @@
 
   h2 {
     margin-bottom: 3mm;
+    padding: 0;
+    border: 0;
     font-size: 14pt;
   }
 
@@ -96,6 +156,10 @@
   .organization,
   .period {
     color: #000;
+  }
+
+  a:hover {
+    background: transparent;
   }
 
   .keywords {

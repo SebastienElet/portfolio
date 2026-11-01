@@ -47,24 +47,34 @@
   <body id="top">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
-      <a class="site-name" href="{{ get_url(path='/') }}">{{ config.title }}</a>
+      <a class="site-name" href="{{ get_url(path='/') }}"><span aria-hidden="true">~/</span>{{ config.title }}</a>
       <nav aria-label="Primary">
         <ul>
           {% block nav_links %}
           <li><a href="{{ get_url(path='/') }}"{% if current_path == '/' %} aria-current="page"{% endif %}>CV</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
           {% endblock nav_links %}
         </ul>
       </nav>
     </header>
+    <div class="terminal-window">
+    <div class="terminal-chrome" aria-hidden="true">
+      <span class="window-dots"><i></i><i></i><i></i></span>
+      <span>sebastien@elet: ~/curriculum-vitae</span>
+      <span>UTF-8</span>
+    </div>
     <main id="main-content" tabindex="-1">
       {% block content %}{% endblock content %}
     </main>
     <footer class="site-footer">
       {% block footer_content %}
+      <p class="session-end" aria-hidden="true"><span class="prompt-user">sebastien@elet</span>:<span class="prompt-path">~</span>$ <span class="cursor">▊</span></p>
       <p>{{ config.title }}</p>
       {% include "partials/social-links.html" %}
       <a href="#top">Back to top</a>
       {% endblock footer_content %}
     </footer>
+    </div>
   </body>
 </html>

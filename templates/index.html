@@ -25,10 +25,11 @@
 {% block content %}
 {% set resume = load_data(path="resume.json") %}
       <header class="cv-header">
+        <p class="session-command" aria-hidden="true"><span class="prompt-user">sebastien@elet</span>:<span class="prompt-path">~</span>$ whoami</p>
         <h1>{{ resume.basics.name }}</h1>
         {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait of {{ resume.basics.name }}" width="96" height="96">{% endif %}
-        {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
-        {% if resume.basics.summary %}<p>{{ resume.basics.summary }}</p>{% endif %}
+        {% if resume.basics.label %}<p class="role"><span class="meta-key" aria-hidden="true">role: </span>{{ resume.basics.label }}</p>{% endif %}
+        {% if resume.basics.summary %}<p class="summary">{{ resume.basics.summary }}</p>{% endif %}
         {% if resume.basics.email or resume.basics.phone or resume.basics.url %}
         <address>
           <ul>
@@ -43,16 +44,18 @@
 
       {% if resume.work %}
       <section id="experience" aria-labelledby="experience-title">
-        <h2 id="experience-title">Work Experience</h2>
+        <h2 id="experience-title"><span class="section-label">Work Experience</span><span class="command-text" aria-hidden="true"><span class="prompt">$</span> cat experience.log</span></h2>
         {% for experience in resume.work %}
-        <article>
-          <h3>{{ experience.position }}</h3>
+        <article class="experience-entry">
+          <header class="entry-heading">
+            <h3>{{ experience.position }}</h3>
+            {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
+          </header>
           {% set organization = experience.name | default(value=experience.company | default(value="")) %}
-          {% if organization or experience.location %}<p class="organization">{{ organization }}{% if organization and experience.location %} · {% endif %}{% if experience.location %}{{ experience.location }}{% endif %}</p>{% endif %}
-          {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
+          {% if organization or experience.location %}<p class="organization">{% if organization %}<span class="meta-key" aria-hidden="true">company: </span>{{ organization }}{% endif %}{% if organization and experience.location %}<span aria-hidden="true"> / </span>{% endif %}{% if experience.location %}<span class="location">{{ experience.location }}</span>{% endif %}</p>{% endif %}
           {% if experience.summary %}<p>{{ experience.summary }}</p>{% endif %}
           {% if experience.highlights %}
-          <ul>
+          <ul class="tree-list">
             {% for highlight in experience.highlights %}
             <li>{{ highlight }}</li>
             {% endfor %}
@@ -65,11 +68,11 @@
 
       {% if resume.skills %}
       <section id="skills" aria-labelledby="skills-title">
-        <h2 id="skills-title">Skills</h2>
+        <h2 id="skills-title"><span class="section-label">Skills</span><span class="command-text" aria-hidden="true"><span class="prompt">$</span> ls skills/</span></h2>
         {% for skill in resume.skills %}
-        <article>
+        <article class="skill-entry">
           <h3>{{ skill.name }}</h3>
-          {% if skill.level %}<p>{{ skill.level }}</p>{% endif %}
+          {% if skill.level %}<p class="skill-level">{{ skill.level }}</p>{% endif %}
           {% if skill.keywords %}
           <ul class="keywords">
             {% for keyword in skill.keywords %}
@@ -84,7 +87,7 @@
 
       {% if resume.education %}
       <section id="education" aria-labelledby="education-title">
-        <h2 id="education-title">Education</h2>
+        <h2 id="education-title"><span class="section-label">Education</span><span class="command-text" aria-hidden="true"><span class="prompt">$</span> cat education.md</span></h2>
         {% for education in resume.education %}
         <article>
           <h3>{{ education.studyType }}{% if education.studyType and education.area %} — {% endif %}{{ education.area }}</h3>
@@ -97,7 +100,7 @@
 
       {% if resume.publications %}
       <section id="publications" aria-labelledby="publications-title">
-        <h2 id="publications-title">Publications</h2>
+        <h2 id="publications-title"><span class="section-label">Publications</span><span class="command-text" aria-hidden="true"><span class="prompt">$</span> cat publications.md</span></h2>
         {% for publication in resume.publications %}
         <article>
           <h3>{% if publication.url %}<a href="{{ publication.url }}">{% endif %}{{ publication.name }}{% if publication.url %}</a>{% endif %}</h3>
@@ -111,8 +114,8 @@
 
       {% if resume.interests %}
       <section id="interests" aria-labelledby="interests-title">
-        <h2 id="interests-title">Interests</h2>
-        <ul>
+        <h2 id="interests-title"><span class="section-label">Interests</span><span class="command-text" aria-hidden="true"><span class="prompt">$</span> cat interests.txt</span></h2>
+        <ul class="interest-list">
           {% for interest in resume.interests %}
           <li>{{ interest.name }}{% if interest.keywords %} — {{ interest.keywords | join(sep=", ") }}{% endif %}</li>
           {% endfor %}
@@ -122,7 +125,7 @@
 
       {% if resume.references %}
       <section id="references" aria-labelledby="references-title">
-        <h2 id="references-title">References</h2>
+        <h2 id="references-title"><span class="section-label">References</span><span class="command-text" aria-hidden="true"><span class="prompt">$</span> cat references.md</span></h2>
         {% for reference in resume.references %}
         <figure>
           {% if reference.reference %}<blockquote><p>{{ reference.reference }}</p></blockquote>{% endif %}
