@@ -90,7 +90,6 @@
   <div class="section-heading cv-heading">
     <p class="end-label"><span>End 03</span> The working record</p>
     <h2>Curriculum vitae</h2>
-    <p class="career-note">{{ about.career_note }}</p>
   </div>
   {% if resume.basics.summary %}<p class="cv-summary">{{ resume.basics.summary }}</p>{% endif %}
 
@@ -206,3 +205,15 @@
 </section>
 <p class="end-note">{{ about.end_note }}</p>
 {% endblock content %}
+
+{% block footer_content %}
+<div id="contact" class="footer-details">
+  <h2 class="end-label"><span>End 05</span> Contact &amp; CV</h2>
+  <p>{{ config.title }}</p>
+</div>
+{% include "partials/social-links.html" %}
+<div class="footer-links">
+  <a href="#cv">Curriculum vitae</a>
+  <a href="#top">Back to top</a>
+</div>
+{% endblock footer_content %}

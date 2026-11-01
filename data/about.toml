@@ -4,7 +4,6 @@ intro = [
 ]
 target_caption = "Archery, away from the screen."
 end_note = "In archery, an end is a group of arrows shot in one sequence."
-career_note = "Bellman is the work I’m proudest of. It grew very quickly, then ran out of funding. I’d rather tell both parts."
 outside = [
   "I live in the countryside. I like the calm. Archery, motorsport and AI are how I lose track of time.",
   "I also have a mechanical calculator. Make of that what you will."
@@ -12,7 +11,7 @@ outside = [
 
 [[notes]]
 title = "Listening first"
-text = "Friends and colleagues describe me as a quiet worker who listens. I’ll take that."
+text = "Friends and colleagues describe me as a discreet worker who listens. I’ll take that."
 
 [[notes]]
 title = "The whole chain"
@@ -21,3 +20,7 @@ text = "I like understanding the whole chain, from hardware architecture to netw
 [[notes]]
 title = "Room to learn"
 text = "I got into software by repairing and using open-source projects. I once dropped a production database, too. That was less constructive."
+
+[[notes]]
+title = "Proudest shot"
+text = "Bellman is the work I’m proudest of. It grew very quickly, then ran out of funding. I’d rather tell both parts."
