@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
+{% block nav_links %}
+{% set navigation_resume = load_data(path="resume.json") %}
+<li><a href="{{ get_url(path='/') }}" aria-current="page">CV</a></li>
+{% if navigation_resume.work %}<li><a href="#experience">Experience</a></li>{% endif %}
+{% if navigation_resume.skills %}<li><a href="#skills">Skills</a></li>{% endif %}
+{% endblock nav_links %}
+
 {% component resume.date(value: string) -%}
 <time datetime="{{ value }}">
   {%- if value | length == 4 -%}
@@ -25,9 +32,13 @@
 {% block content %}
 {% set resume = load_data(path="resume.json") %}
       <header class="cv-header">
+        <div class="cv-identity">
         <h1>{{ resume.basics.name }}</h1>
         {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait of {{ resume.basics.name }}" width="96" height="96">{% endif %}
         {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
+        </div>
+        <div class="cv-intro">
+        <p class="profile-label">Profile</p>
         {% if resume.basics.summary %}<p>{{ resume.basics.summary }}</p>{% endif %}
         {% if resume.basics.email or resume.basics.phone or resume.basics.url %}
         <address>
@@ -39,8 +50,10 @@
         </address>
         {% endif %}
         {% include "partials/social-links.html" %}
+        </div>
       </header>
 
+      <div class="cv-sections">
       {% if resume.work %}
       <section id="experience" aria-labelledby="experience-title">
         <h2 id="experience-title">Work Experience</h2>
@@ -63,13 +76,14 @@
       </section>
       {% endif %}
 
+      <div class="cv-sidebar">
       {% if resume.skills %}
       <section id="skills" aria-labelledby="skills-title">
         <h2 id="skills-title">Skills</h2>
         {% for skill in resume.skills %}
         <article>
           <h3>{{ skill.name }}</h3>
-          {% if skill.level %}<p>{{ skill.level }}</p>{% endif %}
+          {% if skill.level %}<p class="skill-level">{{ skill.level }}</p>{% endif %}
           {% if skill.keywords %}
           <ul class="keywords">
             {% for keyword in skill.keywords %}
@@ -131,5 +145,7 @@
         {% endfor %}
       </section>
       {% endif %}
+      </div>
+      </div>
 
 {% endblock content %}
