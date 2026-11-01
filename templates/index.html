@@ -1,3 +1,25 @@
+{% component resume.date(value: string) -%}
+<time datetime="{{ value }}">
+  {%- if value | length == 4 -%}
+    {{ value }}
+  {%- elif value | length == 7 -%}
+    {{ (value ~ "-01") | date(format="MMMM y", locale="fr") }}
+  {%- else -%}
+    {{ value | date(format="d MMMM y", locale="fr") }}
+  {%- endif -%}
+</time>
+{%- endcomponent resume.date %}
+
+{% component resume.period(start: string = "", end: string = "") %}
+  {% if start or end %}
+  <p class="period">
+    {% if start %}{{ <resume.date value={start} /> }}{% endif %}
+    {% if start and end %} – {% endif %}
+    {% if end %}{{ <resume.date value={end} /> }}{% elif start %} – Aujourd’hui{% endif %}
+  </p>
+  {% endif %}
+{% endcomponent resume.period %}
+
 {% set resume = load_data(path="resume.json") %}
 <!DOCTYPE html>
 <html lang="{{ config.default_language }}">
@@ -13,7 +35,8 @@
     <main>
       <header>
         <h1>{{ resume.basics.name }}</h1>
-        {% if resume.basics.label %}<p>{{ resume.basics.label }}</p>{% endif %}
+        {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait de {{ resume.basics.name }}" width="96" height="96">{% endif %}
+        {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
         {% if resume.basics.summary %}<p>{{ resume.basics.summary }}</p>{% endif %}
         {% if resume.basics.email or resume.basics.phone or resume.basics.url %}
         <address>
@@ -32,15 +55,9 @@
         {% for experience in resume.work %}
         <article>
           <h3>{{ experience.position }}</h3>
-          <p>{{ experience.name | default(value=experience.company | default(value="")) }}</p>
-          {% if experience.location %}<p>{{ experience.location }}</p>{% endif %}
-          {% if experience.startDate or experience.endDate %}
-          <p class="period">
-            {% if experience.startDate %}<time datetime="{{ experience.startDate }}">{{ experience.startDate }}</time>{% endif %}
-            {% if experience.startDate and experience.endDate %} – {% endif %}
-            {% if experience.endDate %}<time datetime="{{ experience.endDate }}">{{ experience.endDate }}</time>{% elif experience.startDate %} – Aujourd’hui{% endif %}
-          </p>
-          {% endif %}
+          {% set organization = experience.name | default(value=experience.company | default(value="")) %}
+          {% if organization or experience.location %}<p class="organization">{{ organization }}{% if organization and experience.location %} · {% endif %}{% if experience.location %}{{ experience.location }}{% endif %}</p>{% endif %}
+          {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
           {% if experience.summary %}<p>{{ experience.summary }}</p>{% endif %}
           {% if experience.highlights %}
           <ul>
@@ -80,14 +97,45 @@
         <article>
           <h3>{{ education.studyType }}{% if education.studyType and education.area %} — {% endif %}{{ education.area }}</h3>
           {% if education.institution %}<p>{{ education.institution }}</p>{% endif %}
-          {% if education.startDate or education.endDate %}
-          <p class="period">
-            {% if education.startDate %}<time datetime="{{ education.startDate }}">{{ education.startDate }}</time>{% endif %}
-            {% if education.startDate and education.endDate %} – {% endif %}
-            {% if education.endDate %}<time datetime="{{ education.endDate }}">{{ education.endDate }}</time>{% elif education.startDate %} – Aujourd’hui{% endif %}
-          </p>
-          {% endif %}
+          {{ <resume.period start={education.startDate | default(value="")} end={education.endDate | default(value="")} /> }}
         </article>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if resume.publications %}
+      <section id="publications" aria-labelledby="publications-title">
+        <h2 id="publications-title">Publications</h2>
+        {% for publication in resume.publications %}
+        <article>
+          <h3>{% if publication.url %}<a href="{{ publication.url }}">{% endif %}{{ publication.name }}{% if publication.url %}</a>{% endif %}</h3>
+          {% if publication.publisher %}<p>{{ publication.publisher }}</p>{% endif %}
+          {% if publication.releaseDate %}<p class="period">{{ <resume.date value={publication.releaseDate} /> }}</p>{% endif %}
+          {% if publication.summary %}<p>{{ publication.summary }}</p>{% endif %}
+        </article>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if resume.interests %}
+      <section id="interests" aria-labelledby="interests-title">
+        <h2 id="interests-title">Centres d’intérêt</h2>
+        <ul>
+          {% for interest in resume.interests %}
+          <li>{{ interest.name }}{% if interest.keywords %} — {{ interest.keywords | join(sep=", ") }}{% endif %}</li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+      {% if resume.references %}
+      <section id="references" aria-labelledby="references-title">
+        <h2 id="references-title">Références</h2>
+        {% for reference in resume.references %}
+        <figure>
+          {% if reference.reference %}<blockquote><p>{{ reference.reference }}</p></blockquote>{% endif %}
+          {% if reference.name %}<figcaption>{{ reference.name }}</figcaption>{% endif %}
+        </figure>
         {% endfor %}
       </section>
       {% endif %}
