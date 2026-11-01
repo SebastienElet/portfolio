@@ -11,7 +11,8 @@
     display: none;
   }
 
-  :focus-visible {
+  :focus-visible,
+  .social-links a:focus-visible {
     outline: none;
   }
 
