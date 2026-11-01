@@ -4,10 +4,19 @@
 }
 
 @media print {
+  :root {
+    color-scheme: light;
+    --paper: #fff;
+    --ink: #000;
+    --muted: #000;
+    --accent: #000;
+  }
+
   .site-header,
   .site-footer,
   nav,
-  .skip-link {
+  .skip-link,
+  .profile-label {
     display: none;
   }
 
@@ -28,6 +37,24 @@
     padding: 0;
   }
 
+  .cv-header,
+  .cv-section {
+    display: block;
+  }
+
+  .standfirst,
+  .section-content {
+    max-width: none;
+    font-size: inherit;
+  }
+
+  .opening-summary::first-letter {
+    float: none;
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
   main {
     width: auto;
     max-width: none;
@@ -36,6 +63,7 @@
   }
 
   h1 {
+    margin-bottom: 2mm;
     font-size: 24pt;
     letter-spacing: normal;
   }
@@ -52,6 +80,27 @@
 
   .role {
     margin-bottom: 2mm;
+    font-style: normal;
+  }
+
+  .entry-meta,
+  .period,
+  .skill-level {
+    margin-bottom: 2mm;
+    font-size: 9pt;
+    letter-spacing: normal;
+  }
+
+  h2,
+  .entry-meta,
+  .period,
+  .skill-level {
+    font-variant-caps: normal;
+  }
+
+  .entry-meta {
+    break-inside: avoid;
+    break-after: avoid;
   }
 
   h1,
@@ -62,12 +111,16 @@
     break-after: avoid;
   }
 
-  section {
+  .cv-section {
     margin-top: 6mm;
+    padding-top: 0;
+    border: 0;
   }
 
   article + article {
     margin-top: 5mm;
+    padding-top: 0;
+    border: 0;
   }
 
   p {
@@ -100,14 +153,5 @@
 
   .keywords {
     gap: 1mm 3mm;
-  }
-
-  #profiles a {
-    padding: 0;
-  }
-
-  #profiles a[href]::after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
   }
 }
