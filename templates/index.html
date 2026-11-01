@@ -30,9 +30,11 @@
     <title>{{ resume.basics.name }} — {{ config.description }}</title>
     <link rel="icon" href="{{ get_url(path='favicon.ico') }}">
     <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+    {% include "blog/feed.html" %}
   </head>
   <body>
     <main>
+      {% include "blog/navigation.html" %}
       <header>
         <h1>{{ resume.basics.name }}</h1>
         {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait of {{ resume.basics.name }}" width="96" height="96">{% endif %}

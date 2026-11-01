@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ config.default_language }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block description %}Notes on software engineering by {{ config.title }}.{% endblock description %}">
+    <title>{% block title %}Blog{% endblock title %} — {{ config.title }}</title>
+    <link rel="icon" href="{{ get_url(path='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+    {% include "blog/feed.html" %}
+  </head>
+  <body>
+    <main class="blog">
+      {% include "blog/navigation.html" %}
+      {% block content %}{% endblock content %}
+    </main>
+  </body>
+</html>

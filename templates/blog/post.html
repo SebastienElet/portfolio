@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{ page.title }}{% endblock title %}
+{% block description %}{{ page.description | default(value=page.title) }}{% endblock description %}
+
+{% block content %}
+<article>
+  <header>
+    <h1>{{ page.title }}</h1>
+    <p class="blog-meta">
+      <time datetime="{{ page.date }}">{{ page.date | date(format="d MMMM y", locale="en") }}</time>
+      {% if page.draft %} · Draft{% endif %}
+    </p>
+    {% if page.taxonomies.tags %}
+    <ul class="blog-tags" aria-label="Post tags">
+      {% for tag in page.taxonomies.tags %}
+      <li><a href="{{ get_taxonomy_url(kind='tags', name=tag) }}">{{ tag }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </header>
+  <div class="blog-content">{{ page.content | safe }}</div>
+</article>
+<p><a href="{{ get_url(path='@/blog/_index.md') }}">All posts</a></p>
+{% endblock content %}
