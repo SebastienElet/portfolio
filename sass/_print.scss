@@ -1,113 +1,38 @@
-@page {
-  size: A4;
-  margin: 15mm;
-}
+@page { size: A4; margin: 15mm; }
 
 @media print {
-  .site-header,
-  .site-footer,
-  nav,
-  .skip-link {
-    display: none;
-  }
-
-  :focus-visible,
-  .social-links a:focus-visible {
-    outline: none;
-  }
-
-  body {
-    background: #fff;
-    color: #000;
-    font-size: 10pt;
-    line-height: 1.35;
-  }
-
-  .cv-header {
-    margin: 0;
-    padding: 0;
-  }
-
-  main {
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  h1 {
-    font-size: 24pt;
-    letter-spacing: normal;
-  }
-
-  h2 {
-    margin-bottom: 3mm;
-    font-size: 14pt;
-  }
-
-  h3,
-  .role {
-    font-size: 11pt;
-  }
-
-  .role {
-    margin-bottom: 2mm;
-  }
-
-  h1,
-  h2,
-  h3,
-  .organization,
-  .period {
-    break-after: avoid;
-  }
-
-  section {
-    margin-top: 6mm;
-  }
-
-  article + article {
-    margin-top: 5mm;
-  }
-
-  p {
-    margin-block: 2mm;
-    orphans: 3;
-    widows: 3;
-  }
-
-  article,
-  figure,
-  li {
-    break-inside: avoid;
-  }
-
-  ul {
-    margin-block: 2mm;
-  }
-
-  li + li {
-    margin-top: 0;
-  }
-
-  a,
-  h2,
-  .role,
-  .organization,
-  .period {
-    color: #000;
-  }
-
-  .keywords {
-    gap: 1mm 3mm;
-  }
-
-  #profiles a {
-    padding: 0;
-  }
-
-  #profiles a[href]::after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
-  }
+  html { scroll-snap-type: none; }
+  .site-header, .site-footer, nav, .skip-link, .panel, .career-heading, svg { display: none !important; }
+  :focus-visible { outline: none; }
+  *, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; }
+  body { background: #fff; color: #000; font-size: 10pt; line-height: 1.35; }
+  main, .career { width: auto; max-width: none; margin: 0; padding: 0; background: #fff; }
+  .cv-header { max-width: none; margin: 0; padding: 0; }
+  .cv-name { display: block; margin-bottom: 2mm; font-size: 24pt; font-weight: 650; letter-spacing: normal; }
+  .cv-header .role { margin-bottom: 2mm; font-size: 11pt; }
+  .cv-header p, .career p, .career-description, .keywords, a { color: #000; }
+  .career section { margin-top: 6mm; }
+  .career h3 { margin-bottom: 3mm; font-size: 14pt; letter-spacing: normal; }
+  .career h4 { margin-bottom: 1mm; font-size: 11pt; letter-spacing: normal; }
+  h3, h4, .cv-name, .role, .organization, .period { break-after: avoid; }
+  .career-entry, .career-entry:nth-of-type(even) { display: block; margin: 0; padding: 0; background: #fff; }
+  .career-entry + .career-entry { margin-top: 5mm; }
+  .career-meta { break-inside: avoid; break-after: avoid; }
+  .career-description { max-width: none; font-size: 10pt; }
+  .career-description > p { margin-bottom: 2mm; }
+  .career-description li + li { margin-top: 0; }
+  .organization { font-size: 10pt; }
+  .period { margin-top: 1mm; font-size: 9pt; color: #000; }
+  p { margin-block: 2mm; orphans: 3; widows: 3; }
+  ul { margin-block: 2mm; }
+  li, figure, #education article, .skills-grid article { break-inside: avoid; }
+  li + li { margin-top: 0; }
+  .skills-grid { display: block; }
+  .skills-grid article + article { margin-top: 3mm; }
+  .keywords { gap: 1mm 3mm; margin-top: 1mm; }
+  #education article + article { margin-top: 3mm; }
+  #interests > ul { display: block; padding-left: 1.2rem; list-style: disc; }
+  .social-links, .cv-header .social-links { display: block; margin-block: 2mm; }
+  .social-links a { display: inline; min-height: 0; padding: 0; font-size: 9pt; overflow-wrap: anywhere; }
+  .social-links a[href]::after { content: " (" attr(href) ")"; }
 }
