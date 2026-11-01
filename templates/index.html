@@ -3,9 +3,9 @@
   {%- if value | length == 4 -%}
     {{ value }}
   {%- elif value | length == 7 -%}
-    {{ (value ~ "-01") | date(format="MMMM y", locale="fr") }}
+    {{ (value ~ "-01") | date(format="MMM y", locale="en") }}
   {%- else -%}
-    {{ value | date(format="d MMMM y", locale="fr") }}
+    {{ value | date(format="d MMM y", locale="en") }}
   {%- endif -%}
 </time>
 {%- endcomponent resume.date %}
@@ -15,7 +15,7 @@
   <p class="period">
     {% if start %}{{ <resume.date value={start} /> }}{% endif %}
     {% if start and end %} – {% endif %}
-    {% if end %}{{ <resume.date value={end} /> }}{% elif start %} – Aujourd’hui{% endif %}
+    {% if end %}{{ <resume.date value={end} /> }}{% elif start %} – Present{% endif %}
   </p>
   {% endif %}
 {% endcomponent resume.period %}
@@ -35,7 +35,7 @@
     <main>
       <header>
         <h1>{{ resume.basics.name }}</h1>
-        {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait de {{ resume.basics.name }}" width="96" height="96">{% endif %}
+        {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait of {{ resume.basics.name }}" width="96" height="96">{% endif %}
         {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
         {% if resume.basics.summary %}<p>{{ resume.basics.summary }}</p>{% endif %}
         {% if resume.basics.email or resume.basics.phone or resume.basics.url %}
@@ -51,7 +51,7 @@
 
       {% if resume.work %}
       <section id="experience" aria-labelledby="experience-title">
-        <h2 id="experience-title">Expériences professionnelles</h2>
+        <h2 id="experience-title">Work Experience</h2>
         {% for experience in resume.work %}
         <article>
           <h3>{{ experience.position }}</h3>
@@ -73,7 +73,7 @@
 
       {% if resume.skills %}
       <section id="skills" aria-labelledby="skills-title">
-        <h2 id="skills-title">Compétences</h2>
+        <h2 id="skills-title">Skills</h2>
         {% for skill in resume.skills %}
         <article>
           <h3>{{ skill.name }}</h3>
@@ -92,7 +92,7 @@
 
       {% if resume.education %}
       <section id="education" aria-labelledby="education-title">
-        <h2 id="education-title">Formation</h2>
+        <h2 id="education-title">Education</h2>
         {% for education in resume.education %}
         <article>
           <h3>{{ education.studyType }}{% if education.studyType and education.area %} — {% endif %}{{ education.area }}</h3>
@@ -119,7 +119,7 @@
 
       {% if resume.interests %}
       <section id="interests" aria-labelledby="interests-title">
-        <h2 id="interests-title">Centres d’intérêt</h2>
+        <h2 id="interests-title">Interests</h2>
         <ul>
           {% for interest in resume.interests %}
           <li>{{ interest.name }}{% if interest.keywords %} — {{ interest.keywords | join(sep=", ") }}{% endif %}</li>
@@ -130,7 +130,7 @@
 
       {% if resume.references %}
       <section id="references" aria-labelledby="references-title">
-        <h2 id="references-title">Références</h2>
+        <h2 id="references-title">References</h2>
         {% for reference in resume.references %}
         <figure>
           {% if reference.reference %}<blockquote><p>{{ reference.reference }}</p></blockquote>{% endif %}
@@ -142,7 +142,7 @@
 
       {% if resume.basics.profiles %}
       <section id="profiles" aria-labelledby="profiles-title">
-        <h2 id="profiles-title">Liens</h2>
+        <h2 id="profiles-title">Links</h2>
         <ul>
           {% for profile in resume.basics.profiles %}
           <li>

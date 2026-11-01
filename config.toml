@@ -1,5 +1,5 @@
 base_url = "https://sebastien.elet.fr"
 title = "Sébastien Elet"
-description = "Curriculum vitæ"
-default_language = "fr"
+description = "Curriculum vitae"
+default_language = "en"
 compile_sass = true

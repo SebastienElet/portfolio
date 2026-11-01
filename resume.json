@@ -1,8 +1,8 @@
 {
   "basics": {
     "name": "Sébastien Elet",
-    "label": "Staff Engineer · Node.js / TypeScript · SaaS B2B · AI-augmented",
-    "summary": "En 19 ans, j'ai fait évoluer des plateformes SaaS de la startup jusqu'au groupe — sans jamais sacrifier la vélocité pour la stabilité. Aujourd'hui Staff Engineer chez Septeo ADB, je dirige l'équipe technique syndic sur Lobby : 90 syndics, 681 utilisateurs, 155 000 copropriétaires.",
+    "label": "Staff Engineer · Node.js / TypeScript · B2B SaaS · AI-augmented",
+    "summary": "Over 19 years, I have scaled SaaS platforms from startups to corporate groups, without ever sacrificing velocity for stability. Today, as a Staff Engineer at Septeo ADB, I lead the condominium management engineering team on Lobby: 90 property management firms, 681 users and 155,000 condominium owners.",
     "picture": "",
     "email": "",
     "phone": "",
@@ -28,50 +28,50 @@
     {
       "name": "SEPTEO ADB",
       "position": "Staff Engineer",
-      "location": "À distance",
+      "location": "Remote",
       "startDate": "2025-10",
-      "summary": "Direction de l'équipe technique syndic sur la plateforme Lobby (Node.js / GraphQL / PostgreSQL / AWS / Kubernetes). Compétences : React.js, PostgreSQL, TypeScript.",
+      "summary": "Leading the condominium management engineering team on the Lobby platform (Node.js / GraphQL / PostgreSQL / AWS / Kubernetes). Skills: React.js, PostgreSQL, TypeScript.",
       "highlights": [
-        "Pilotage de l'équipe migration pour l'onboarding des nouveaux clients.",
-        "Plateforme en production : 90 syndics · 681 utilisateurs · 155 000 copropriétaires."
+        "Leading the migration team to onboard new clients.",
+        "Platform in production: 90 property management firms · 681 users · 155,000 condominium owners."
       ]
     },
     {
       "name": "Inch",
       "position": "Staff Engineer",
-      "location": "À distance",
+      "location": "Remote",
       "startDate": "2024-03",
       "endDate": "2025-10",
-      "summary": "Référent technique sur Lobby, plateforme SaaS de gestion immobilière. Compétences : React.js, PostgreSQL, TypeScript.",
+      "summary": "Technical lead for Lobby, a SaaS property management platform. Skills: React.js, PostgreSQL, TypeScript.",
       "highlights": [
-        "Stabilisation de l'architecture post-acquisition, migration des nouveaux clients, support des équipes produit."
+        "Stabilized the architecture following the acquisition, migrated new clients and supported product teams."
       ]
     },
     {
       "name": "Bellman",
       "position": "Staff Engineer",
-      "location": "À distance",
+      "location": "Remote",
       "startDate": "2022-03",
       "endDate": "2024-02",
-      "summary": "Compétences : React.js, PostgreSQL, TypeScript.",
+      "summary": "Skills: React.js, PostgreSQL, TypeScript.",
       "highlights": [
-        "Conçu et piloté la refonte complète du datamodel pour passer d'une architecture mono-tenant à SaaS. Résultat : 90 clients migrés en production.",
-        "Développé un moteur d'import depuis les logiciels concurrents pour supprimer le frein à l'acquisition. 10 logiciels supportés. Temps de migration réduit de 6 mois à 6-8 semaines.",
-        "Remplacé le provider tiers par une intégration EBICS propriétaire. Résultat : élimination des doublons de transactions et import de ~2 millions de lignes de transactions bancaires."
+        "Designed and led a complete data model redesign to move from a single-tenant architecture to SaaS. Result: 90 clients migrated in production.",
+        "Built an engine to import data from competing software to remove a barrier to customer acquisition. Supported 10 software products. Reduced migration time from 6 months to 6–8 weeks.",
+        "Replaced the third-party provider with an in-house EBICS integration. Result: eliminated duplicate transactions and imported approximately 2 million bank transaction records."
       ]
     },
     {
       "name": "Bellman",
       "position": "Senior Developer",
-      "location": "À distance",
+      "location": "Remote",
       "startDate": "2020-09",
       "endDate": "2022-03",
-      "summary": "Compétences : React.js, PostgreSQL, TypeScript.",
+      "summary": "Skills: React.js, PostgreSQL, TypeScript.",
       "highlights": [
-        "Couverture de tests : montée de 0 à 50% de couverture d'intégration sur une codebase Node.js / Prisma, réduisant significativement les régressions en production.",
-        "Télétransmission des chèques : développé le module de traitement automatisé — 130 000 chèques traités.",
-        "Mensualisation des charges : implémenté la mensualisation du paiement pour 18 000 copropriétaires.",
-        "Features métier critiques : génération automatique de CERFA, facturation des honoraires de syndic, envoi des mises en demeure."
+        "Test coverage: increased integration test coverage from 0 to 50% on a Node.js / Prisma codebase, significantly reducing production regressions.",
+        "Electronic cheque submission: built the automated processing module — 130,000 cheques processed.",
+        "Monthly service charge payments: implemented monthly payments for 18,000 condominium owners.",
+        "Critical business features: automated generation of CERFA forms, billing of property management fees and issuing formal notices."
       ]
     },
     {
