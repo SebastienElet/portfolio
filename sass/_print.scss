@@ -4,6 +4,15 @@
 }
 
 @media print {
+  :root {
+    color-scheme: light;
+    --paper: #fff;
+    --ink: #000;
+    --muted: #000;
+    --accent: #000;
+    --rule: #000;
+  }
+
   .site-header,
   .site-footer,
   nav,
@@ -28,6 +37,29 @@
     padding: 0;
   }
 
+  .cv-intro,
+  main > section,
+  .skill-list article {
+    display: block;
+    border: 0;
+    padding: 0;
+  }
+
+  .cv-intro {
+    margin-top: 3mm;
+  }
+
+  .summary {
+    max-width: none;
+    font-size: 10pt;
+    letter-spacing: normal;
+    line-height: inherit;
+  }
+
+  h2::before {
+    display: none;
+  }
+
   main {
     width: auto;
     max-width: none;
@@ -36,11 +68,13 @@
   }
 
   h1 {
+    margin-bottom: 3mm;
     font-size: 24pt;
     letter-spacing: normal;
   }
 
   h2 {
+    display: block;
     margin-bottom: 3mm;
     font-size: 14pt;
   }
@@ -48,9 +82,11 @@
   h3,
   .role {
     font-size: 11pt;
+    letter-spacing: normal;
   }
 
   .role {
+    max-width: none;
     margin-bottom: 2mm;
   }
 
@@ -62,12 +98,23 @@
     break-after: avoid;
   }
 
-  section {
+  main > section {
     margin-top: 6mm;
   }
 
   article + article {
     margin-top: 5mm;
+    padding: 0;
+    border: 0;
+  }
+
+  article p,
+  article ul {
+    max-width: none;
+  }
+
+  .period {
+    margin-block: 2mm;
   }
 
   p {
@@ -100,6 +147,21 @@
 
   .keywords {
     gap: 1mm 3mm;
+  }
+
+  .period,
+  .skill-list p {
+    font-size: 9pt;
+  }
+
+  .interest-list {
+    display: block;
+    padding-left: 1.2rem;
+    font-size: 10pt;
+    font-weight: 400;
+    letter-spacing: normal;
+    list-style: disc;
+    break-inside: avoid;
   }
 
   #profiles a {

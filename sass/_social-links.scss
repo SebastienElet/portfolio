@@ -1,8 +1,8 @@
 .social-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1rem;
-  margin: 1rem 0 0;
+  gap: 0.5rem 1.5rem;
+  margin: 1.5rem 0 0;
   padding: 0;
   list-style: none;
 
@@ -14,12 +14,10 @@
     display: inline-flex;
     align-items: center;
     gap: 0.4em;
-    padding-block: 0.35rem;
-  }
-
-  a:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 4px;
+    min-height: 2.75rem;
+    padding-block: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
   }
 
   svg {
@@ -27,10 +25,8 @@
   }
 }
 
-.social-footer {
-  max-width: 44rem;
-  margin: 2rem auto;
-  padding-inline: clamp(1rem, 4vw, 2rem);
+.site-footer .social-links {
+  margin: 0;
 }
 
 @media print {
@@ -39,6 +35,7 @@
     margin-block: 2mm;
 
     a {
+      min-height: 0;
       padding: 0;
       font-size: 9pt;
     }
@@ -50,9 +47,5 @@
     svg {
       display: none;
     }
-  }
-
-  .social-footer {
-    display: none;
   }
 }
