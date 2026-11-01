@@ -22,11 +22,121 @@
   {% endif %}
 {% endcomponent resume.period %}
 
+{% block nav_links %}
+<li><a href="#build">Work</a></li>
+<li><a href="#cv">CV</a></li>
+<li><a href="#contact">Contact</a></li>
+{% endblock nav_links %}
+
 {% block content %}
 {% set resume = load_data(path="resume.json") %}
+<div class="story">
+  <section class="panel hero" aria-labelledby="hero-title">
+    <img class="panel-art" src="/images/horizon.svg" alt="" width="1600" height="1000" fetchpriority="high">
+    <div class="panel-heading">
+      <h1 id="hero-title">Speed.<br> Stability.</h1>
+      <p>I’m {{ resume.basics.name }}.<br> Staff Engineer. Building B2B SaaS that lasts.</p>
+    </div>
+    <img class="hero-portrait" src="/images/portrait.jpg" alt="Sébastien Elet smiling outdoors, wearing glasses and a dark hoodie" width="460" height="460" fetchpriority="high">
+    <div class="hero-signature" aria-hidden="true"><span>Node.js / TypeScript</span><span>AI-augmented engineering</span></div>
+    <div class="panel-bottom">
+      <div class="panel-actions">
+        <a class="button" href="#build">Explore my work</a>
+        <a class="button button-secondary" href="#cv">Read the full CV</a>
+      </div>
+      <div class="hero-profiles">{% include "partials/social-links.html" %}</div>
+    </div>
+  </section>
+
+  <section class="panel build" id="build" aria-labelledby="build-title">
+    <img class="panel-art" src="/images/structure.svg" alt="" width="1600" height="1000" loading="lazy">
+    <div class="panel-heading reveal">
+      <h2 id="build-title">Built for<br> the long run.</h2>
+      <p>SaaS architecture. Data migrations. Product engineering.<br> Velocity and stability, by design.</p>
+    </div>
+    <div class="panel-bottom">
+      <p class="panel-caption">Node.js &nbsp; / &nbsp; TypeScript &nbsp; / &nbsp; PostgreSQL</p>
+      <div class="panel-actions">
+        <a class="button" href="#impact">See the impact</a>
+        <a class="button button-secondary" href="#skills">Explore my skills</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel impact panel-dark" id="impact" aria-labelledby="impact-title">
+    <img class="panel-art" src="/images/impact.svg" alt="" width="1600" height="1000" loading="lazy">
+    <div class="panel-heading reveal">
+      <h2 id="impact-title">Real systems.<br> Real lives.</h2>
+      <p>Today, I lead condominium management engineering<br> on Lobby at Septeo ADB.</p>
+    </div>
+    <div class="panel-bottom">
+      <dl class="specs">
+        <div><dt>90</dt><dd>Property management firms</dd></div>
+        <div><dt>681</dt><dd>Platform users</dd></div>
+        <div><dt>155,000</dt><dd>Condominium owners</dd></div>
+      </dl>
+      <div class="panel-actions">
+        <a class="button" href="#experience">Read the experience</a>
+        <a class="button button-secondary" href="#career">Follow the journey</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel career" id="career" aria-labelledby="career-title">
+    <img class="panel-art" src="/images/trajectory.svg" alt="" width="1600" height="1000" loading="lazy">
+    <div class="panel-heading reveal">
+      <h2 id="career-title">Always<br> moving forward.</h2>
+      <p>From cloud call centres to retail platforms<br> to property management. Engineering since {{ resume.work[7].startDate | truncate(length=4, end="") }}.</p>
+    </div>
+    <div class="panel-bottom">
+      <p class="career-companies">{{ resume.work[7].company }} <span>→</span> {{ resume.work[5].company }} <span>→</span> {{ resume.work[3].name }} <span>→</span> {{ resume.work[1].name }} <span>→</span> {{ resume.work[0].name }}</p>
+      <div class="panel-actions">
+        <a class="button" href="#experience">Explore my career</a>
+        <a class="button button-secondary" href="#writing">What comes next</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel writing" id="writing" aria-labelledby="writing-title">
+    <img class="panel-art" src="/images/pages.svg" alt="" width="1600" height="1000" loading="lazy">
+    <div class="panel-heading reveal">
+      <h2 id="writing-title">Notes from<br> the work.</h2>
+      <p>Engineering, SaaS and AI-augmented work.<br> Writing — coming soon.</p>
+    </div>
+    <div class="panel-bottom">
+      <div class="panel-actions">
+        {% for profile in resume.basics.profiles %}{% if profile.network | lower == "github" %}
+        <a class="button" href="{{ profile.url }}" rel="me noopener">Explore my GitHub</a>
+        {% endif %}{% endfor %}
+        <a class="button button-secondary" href="#contact">Let’s connect</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel contact panel-dark" id="contact" aria-labelledby="contact-title">
+    <img class="panel-art" src="/images/afterglow.svg" alt="" width="1600" height="1000" loading="lazy">
+    <div class="panel-heading reveal">
+      <h2 id="contact-title">Let’s build<br> what’s next.</h2>
+      <p>Good systems begin with a conversation.</p>
+    </div>
+    <div class="panel-bottom">
+      <p class="panel-caption">{{ resume.basics.name }} &nbsp; / &nbsp; Staff Engineer</p>
+      <div class="panel-actions">
+        {% for profile in resume.basics.profiles %}{% if profile.network | lower == "linkedin" %}
+        <a class="button" href="{{ profile.url }}" rel="me noopener">Connect on LinkedIn</a>
+        {% endif %}{% endfor %}
+        {% for profile in resume.basics.profiles %}{% if profile.network | lower == "github" %}
+        <a class="button button-secondary" href="{{ profile.url }}" rel="me noopener">Find me on GitHub</a>
+        {% endif %}{% endfor %}
+        {% if resume.basics.email %}<a class="contact-email" href="mailto:{{ resume.basics.email }}">{{ resume.basics.email }}</a>{% endif %}
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="resume" id="cv" aria-labelledby="cv-title">
       <header class="cv-header">
-        <h1>{{ resume.basics.name }}</h1>
-        {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait of {{ resume.basics.name }}" width="96" height="96">{% endif %}
+        <h2 id="cv-title">{{ resume.basics.name }}</h2>
         {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
         {% if resume.basics.summary %}<p>{{ resume.basics.summary }}</p>{% endif %}
         {% if resume.basics.email or resume.basics.phone or resume.basics.url %}
@@ -63,6 +173,7 @@
       </section>
       {% endif %}
 
+      <div class="resume-secondary">
       {% if resume.skills %}
       <section id="skills" aria-labelledby="skills-title">
         <h2 id="skills-title">Skills</h2>
@@ -132,4 +243,6 @@
       </section>
       {% endif %}
 
+      </div>
+</section>
 {% endblock content %}
