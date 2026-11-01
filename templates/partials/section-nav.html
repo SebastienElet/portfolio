@@ -1,0 +1,24 @@
+{% set navigation_resume = load_data(path="resume.json") %}
+<nav aria-label="CV sections">
+  <ul class="section-nav">
+    <li><a href="#overview"><span aria-hidden="true">00</span> Overview</a></li>
+    {% if navigation_resume.work %}
+    <li>
+      <a href="#experience"><span aria-hidden="true">01</span> Experience</a>
+      <ul class="company-nav">
+        {% for experience in navigation_resume.work %}
+        {% set organization = experience.name | default(value=experience.company | default(value="")) %}
+        {% set anchor_suffix = "role-" ~ loop.index %}
+        {% if experience.startDate %}{% set anchor_suffix = experience.startDate %}{% endif %}
+        <li><a href="#experience-{{ organization | slugify }}-{{ anchor_suffix }}" aria-label="{{ organization }}, {{ experience.position }}{% if experience.startDate %}, {{ experience.startDate }}{% endif %}">{{ organization }}{% if experience.startDate %} <span>{{ experience.startDate | truncate(length=4, end="") }}</span>{% endif %}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% endif %}
+    {% if navigation_resume.skills %}<li><a href="#skills"><span aria-hidden="true">02</span> Skills</a></li>{% endif %}
+    {% if navigation_resume.education %}<li><a href="#education"><span aria-hidden="true">03</span> Education</a></li>{% endif %}
+    {% if navigation_resume.publications %}<li><a href="#publications"><span aria-hidden="true">04</span> Publications</a></li>{% endif %}
+    {% if navigation_resume.interests %}<li><a href="#interests"><span aria-hidden="true">05</span> Interests</a></li>{% endif %}
+    {% if navigation_resume.references %}<li><a href="#references"><span aria-hidden="true">06</span> References</a></li>{% endif %}
+  </ul>
+</nav>

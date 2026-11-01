@@ -4,8 +4,29 @@
 }
 
 @media print {
+  :root {
+    color-scheme: light;
+    --paper: #fff;
+    --surface: #fff;
+    --ink: #000;
+    --muted: #000;
+    --accent: #000;
+    --tint: #fff;
+    --border: #bbb;
+    --code: #fff;
+  }
+
   .site-header,
   .site-footer,
+  .sidebar,
+  .page-index,
+  .mobile-navigation,
+  .breadcrumbs,
+  .eyebrow,
+  .section-number,
+  .section-count,
+  .document-badge,
+  .permalink,
   nav,
   .skip-link {
     display: none;
@@ -23,9 +44,10 @@
     line-height: 1.35;
   }
 
-  .cv-header {
+  .document-layout {
+    display: block;
+    width: auto;
     margin: 0;
-    padding: 0;
   }
 
   main {
@@ -35,13 +57,25 @@
     padding: 0;
   }
 
+  .cv-header,
+  .abstract {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: #fff;
+  }
+
+  .cv-profiles {
+    display: block;
+  }
+
   h1 {
+    margin: 0 0 2mm;
     font-size: 24pt;
     letter-spacing: normal;
   }
 
   h2 {
-    margin-bottom: 3mm;
     font-size: 14pt;
   }
 
@@ -51,13 +85,17 @@
   }
 
   .role {
+    max-width: none;
     margin-bottom: 2mm;
+    line-height: inherit;
   }
 
   h1,
   h2,
   h3,
-  .organization,
+  .entry-heading,
+  .section-heading,
+  .role-metadata,
   .period {
     break-after: avoid;
   }
@@ -66,20 +104,44 @@
     margin-top: 6mm;
   }
 
+  .section-heading {
+    margin-bottom: 3mm;
+    padding: 0;
+    border: 0;
+  }
+
+  article,
+  figure,
+  li,
+  tr {
+    break-inside: avoid;
+  }
+
+  .experience-entry + .experience-entry,
+  .education-entry + .education-entry,
   article + article {
     margin-top: 5mm;
+    padding: 0;
+    border: 0;
+  }
+
+  .role-metadata {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm 6mm;
+    margin: 2mm 0;
+    padding: 0;
+    font-size: 9pt;
+
+    dt {
+      font-size: 8pt;
+    }
   }
 
   p {
     margin-block: 2mm;
     orphans: 3;
     widows: 3;
-  }
-
-  article,
-  figure,
-  li {
-    break-inside: avoid;
   }
 
   ul {
@@ -90,24 +152,42 @@
     margin-top: 0;
   }
 
-  a,
-  h2,
-  .role,
-  .organization,
   .period {
-    color: #000;
+    font-size: 9pt;
+  }
+
+  .skills-reference {
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+
+    table {
+      font-size: 9pt;
+    }
+
+    th,
+    td {
+      padding: 2mm;
+    }
+  }
+
+  code {
+    font-size: 8pt;
   }
 
   .keywords {
     gap: 1mm 3mm;
+
+    li {
+      padding: 0;
+    }
   }
 
-  #profiles a {
-    padding: 0;
-  }
+  .interest-list {
+    gap: 1mm 5mm;
 
-  #profiles a[href]::after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
+    span {
+      display: none;
+    }
   }
 }

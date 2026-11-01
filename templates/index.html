@@ -22,13 +22,63 @@
   {% endif %}
 {% endcomponent resume.period %}
 
+{% block sidebar %}
+<aside class="sidebar" aria-label="Reference navigation">
+  <div class="sidebar-heading"><span>Curriculum vitæ</span><span class="document-badge">CV</span></div>
+  <p class="eyebrow">Reference</p>
+  {% include "partials/section-nav.html" %}
+  <div class="sidebar-footer"><span aria-hidden="true">{ }</span> Engineer reference</div>
+</aside>
+<details class="mobile-navigation">
+  <summary>Curriculum vitæ <span>Browse sections</span></summary>
+  {% include "partials/section-nav.html" %}
+</details>
+{% endblock sidebar %}
+
+{% block page_index %}
+{% set resume = load_data(path="resume.json") %}
+<aside class="page-index" aria-label="Page index">
+  <nav aria-label="On this page">
+    <p class="eyebrow">On this page</p>
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      {% if resume.work %}<li><a href="#experience">Experience</a></li>{% endif %}
+      {% if resume.skills %}<li><a href="#skills">Skills</a></li>{% endif %}
+      {% if resume.education %}<li><a href="#education">Education</a></li>{% endif %}
+      {% if resume.publications %}<li><a href="#publications">Publications</a></li>{% endif %}
+      {% if resume.interests %}<li><a href="#interests">Interests</a></li>{% endif %}
+      {% if resume.references %}<li><a href="#references">References</a></li>{% endif %}
+    </ul>
+  </nav>
+  {% if resume.work %}
+  {% set current_position = resume.work | first %}
+  {% if not current_position.endDate %}
+  <div class="current-position">
+    <p class="eyebrow">Current position</p>
+    <p>{{ current_position.position }}</p>
+    <p class="current-company">{{ current_position.name | default(value=current_position.company | default(value="")) }}</p>
+    {% if current_position.location %}<p>{{ current_position.location }}</p>{% endif %}
+  </div>
+  {% endif %}
+  {% endif %}
+  <a class="back-to-top" href="#top">↑ Back to top</a>
+</aside>
+{% endblock page_index %}
+
 {% block content %}
 {% set resume = load_data(path="resume.json") %}
-      <header class="cv-header">
-        <h1>{{ resume.basics.name }}</h1>
+      <div class="breadcrumbs"><span>Curriculum vitæ</span><span aria-hidden="true">/</span><span>Overview</span></div>
+      <header class="cv-header" id="overview">
+        <p class="eyebrow">Engineer reference <span aria-hidden="true">/</span> 00</p>
+        <h1>{{ resume.basics.name }}<a class="permalink" href="#overview" aria-label="Link to overview">#</a></h1>
         {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait of {{ resume.basics.name }}" width="96" height="96">{% endif %}
         {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
-        {% if resume.basics.summary %}<p>{{ resume.basics.summary }}</p>{% endif %}
+        {% if resume.basics.summary %}
+        <div class="abstract">
+          <p class="eyebrow"><span aria-hidden="true">↳</span> Abstract</p>
+          <p>{{ resume.basics.summary }}</p>
+        </div>
+        {% endif %}
         {% if resume.basics.email or resume.basics.phone or resume.basics.url %}
         <address>
           <ul>
@@ -38,21 +88,27 @@
           </ul>
         </address>
         {% endif %}
-        {% include "partials/social-links.html" %}
+        <div class="cv-profiles">{% include "partials/social-links.html" %}</div>
       </header>
 
       {% if resume.work %}
       <section id="experience" aria-labelledby="experience-title">
-        <h2 id="experience-title">Work Experience</h2>
+        <div class="section-heading"><span class="section-number" aria-hidden="true">01</span><h2 id="experience-title">Work Experience<a class="permalink" href="#experience" aria-label="Link to work experience">#</a></h2><span class="section-count">{{ resume.work | length }} roles</span></div>
         {% for experience in resume.work %}
-        <article>
-          <h3>{{ experience.position }}</h3>
-          {% set organization = experience.name | default(value=experience.company | default(value="")) %}
-          {% if organization or experience.location %}<p class="organization">{{ organization }}{% if organization and experience.location %} · {% endif %}{% if experience.location %}{{ experience.location }}{% endif %}</p>{% endif %}
-          {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
+        {% set organization = experience.name | default(value=experience.company | default(value="")) %}
+        {% set anchor_suffix = "role-" ~ loop.index %}
+        {% if experience.startDate %}{% set anchor_suffix = experience.startDate %}{% endif %}
+        {% set experience_id = "experience-" ~ (organization | slugify) ~ "-" ~ anchor_suffix %}
+        <article class="experience-entry" id="{{ experience_id }}" aria-labelledby="{{ experience_id }}-title">
+          <div class="entry-heading"><h3 id="{{ experience_id }}-title">{{ organization }}<a class="permalink" href="#{{ experience_id }}" aria-label="Link to {{ organization }}, {{ experience.position }}">#</a></h3>{% if not experience.endDate %}<span class="document-badge">Current</span>{% endif %}</div>
+          <dl class="role-metadata">
+            <div class="position"><dt>Role</dt><dd>{{ experience.position }}</dd></div>
+            {% if experience.startDate or experience.endDate %}<div><dt>Period</dt><dd>{{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}</dd></div>{% endif %}
+            {% if experience.location %}<div><dt>Location</dt><dd>{{ experience.location }}</dd></div>{% endif %}
+          </dl>
           {% if experience.summary %}<p>{{ experience.summary }}</p>{% endif %}
           {% if experience.highlights %}
-          <ul>
+          <ul class="highlights">
             {% for highlight in experience.highlights %}
             <li>{{ highlight }}</li>
             {% endfor %}
@@ -65,28 +121,30 @@
 
       {% if resume.skills %}
       <section id="skills" aria-labelledby="skills-title">
-        <h2 id="skills-title">Skills</h2>
-        {% for skill in resume.skills %}
-        <article>
-          <h3>{{ skill.name }}</h3>
-          {% if skill.level %}<p>{{ skill.level }}</p>{% endif %}
-          {% if skill.keywords %}
-          <ul class="keywords">
-            {% for keyword in skill.keywords %}
-            <li>{{ keyword }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-        </article>
-        {% endfor %}
+        <div class="section-heading"><span class="section-number" aria-hidden="true">02</span><h2 id="skills-title">Skills<a class="permalink" href="#skills" aria-label="Link to skills">#</a></h2></div>
+        <div class="skills-reference">
+          <table>
+            <caption class="visually-hidden">Skill domains, proficiency levels and technologies</caption>
+            <thead><tr><th scope="col">Domain</th><th scope="col">Level</th><th scope="col">Technologies</th></tr></thead>
+            <tbody>
+              {% for skill in resume.skills %}
+              <tr>
+                <th scope="row"><code>{{ skill.name }}</code></th>
+                <td>{% if skill.level %}{{ skill.level }}{% endif %}</td>
+                <td>{% if skill.keywords %}<ul class="keywords">{% for keyword in skill.keywords %}<li><code>{{ keyword }}</code></li>{% endfor %}</ul>{% endif %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </section>
       {% endif %}
 
       {% if resume.education %}
       <section id="education" aria-labelledby="education-title">
-        <h2 id="education-title">Education</h2>
+        <div class="section-heading"><span class="section-number" aria-hidden="true">03</span><h2 id="education-title">Education<a class="permalink" href="#education" aria-label="Link to education">#</a></h2></div>
         {% for education in resume.education %}
-        <article>
+        <article class="education-entry">
           <h3>{{ education.studyType }}{% if education.studyType and education.area %} — {% endif %}{{ education.area }}</h3>
           {% if education.institution %}<p>{{ education.institution }}</p>{% endif %}
           {{ <resume.period start={education.startDate | default(value="")} end={education.endDate | default(value="")} /> }}
@@ -97,7 +155,7 @@
 
       {% if resume.publications %}
       <section id="publications" aria-labelledby="publications-title">
-        <h2 id="publications-title">Publications</h2>
+        <div class="section-heading"><span class="section-number" aria-hidden="true">04</span><h2 id="publications-title">Publications<a class="permalink" href="#publications" aria-label="Link to publications">#</a></h2></div>
         {% for publication in resume.publications %}
         <article>
           <h3>{% if publication.url %}<a href="{{ publication.url }}">{% endif %}{{ publication.name }}{% if publication.url %}</a>{% endif %}</h3>
@@ -111,10 +169,10 @@
 
       {% if resume.interests %}
       <section id="interests" aria-labelledby="interests-title">
-        <h2 id="interests-title">Interests</h2>
-        <ul>
+        <div class="section-heading"><span class="section-number" aria-hidden="true">05</span><h2 id="interests-title">Interests<a class="permalink" href="#interests" aria-label="Link to interests">#</a></h2></div>
+        <ul class="interest-list">
           {% for interest in resume.interests %}
-          <li>{{ interest.name }}{% if interest.keywords %} — {{ interest.keywords | join(sep=", ") }}{% endif %}</li>
+          <li><span aria-hidden="true">↳</span> {{ interest.name }}{% if interest.keywords %} — {{ interest.keywords | join(sep=", ") }}{% endif %}</li>
           {% endfor %}
         </ul>
       </section>
@@ -122,7 +180,7 @@
 
       {% if resume.references %}
       <section id="references" aria-labelledby="references-title">
-        <h2 id="references-title">References</h2>
+        <div class="section-heading"><span class="section-number" aria-hidden="true">06</span><h2 id="references-title">References<a class="permalink" href="#references" aria-label="Link to references">#</a></h2></div>
         {% for reference in resume.references %}
         <figure>
           {% if reference.reference %}<blockquote><p>{{ reference.reference }}</p></blockquote>{% endif %}
@@ -131,5 +189,4 @@
         {% endfor %}
       </section>
       {% endif %}
-
 {% endblock content %}

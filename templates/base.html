@@ -47,7 +47,7 @@
   <body id="top">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
-      <a class="site-name" href="{{ get_url(path='/') }}">{{ config.title }}</a>
+      <a class="site-name" href="{{ get_url(path='/') }}"><span class="site-mark" aria-hidden="true">se<span>.</span></span>{{ config.title }}</a>
       <nav aria-label="Primary">
         <ul>
           {% block nav_links %}
@@ -55,10 +55,15 @@
           {% endblock nav_links %}
         </ul>
       </nav>
+      {% include "partials/social-links.html" %}
     </header>
-    <main id="main-content" tabindex="-1">
-      {% block content %}{% endblock content %}
-    </main>
+    <div class="document-layout">
+      {% block sidebar %}{% endblock sidebar %}
+      <main id="main-content" tabindex="-1">
+        {% block content %}{% endblock content %}
+      </main>
+      {% block page_index %}{% endblock page_index %}
+    </div>
     <footer class="site-footer">
       {% block footer_content %}
       <p>{{ config.title }}</p>
