@@ -1,0 +1,23 @@
+intro = [
+  "I’m a Staff Engineer working on B2B SaaS with Node.js and TypeScript.",
+  "These days, I don’t write code. I work on product and build the harness that lets AI agents do the coding."
+]
+target_caption = "Archery, away from the screen."
+end_note = "In archery, an end is a group of arrows shot in one sequence."
+career_note = "Bellman is the work I’m proudest of. It grew very quickly, then ran out of funding. I’d rather tell both parts."
+outside = [
+  "I live in the countryside. I like the calm. Archery, motorsport and AI are how I lose track of time.",
+  "I also have a mechanical calculator. Make of that what you will."
+]
+
+[[notes]]
+title = "Listening first"
+text = "Friends and colleagues describe me as a quiet worker who listens. I’ll take that."
+
+[[notes]]
+title = "The whole chain"
+text = "I like understanding the whole chain, from hardware architecture to networks to software. Quality and security are the parts I’m least willing to leave to chance."
+
+[[notes]]
+title = "Room to learn"
+text = "I got into software by repairing and using open-source projects. I once dropped a production database, too. That was less constructive."
