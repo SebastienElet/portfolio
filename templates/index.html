@@ -47,6 +47,7 @@
           </ul>
         </address>
         {% endif %}
+        {% include "partials/social-links.html" %}
       </header>
 
       {% if resume.work %}
@@ -140,20 +141,9 @@
       </section>
       {% endif %}
 
-      {% if resume.basics.profiles %}
-      <section id="profiles" aria-labelledby="profiles-title">
-        <h2 id="profiles-title">Links</h2>
-        <ul>
-          {% for profile in resume.basics.profiles %}
-          <li>
-            {% if profile.url %}<a href="{{ profile.url }}">{% endif %}
-            {{ profile.network }}{% if profile.username %} — {{ profile.username }}{% endif %}
-            {% if profile.url %}</a>{% endif %}
-          </li>
-          {% endfor %}
-        </ul>
-      </section>
-      {% endif %}
     </main>
+    <footer class="social-footer">
+      {% include "partials/social-links.html" %}
+    </footer>
   </body>
 </html>
