@@ -1,113 +1,48 @@
-@page {
-  size: A4;
-  margin: 15mm;
-}
+@page { size: A4; margin: 15mm; }
 
 @media print {
-  .site-header,
-  .site-footer,
-  nav,
-  .skip-link {
-    display: none;
-  }
+  .site-header, .site-footer, nav, .skip-link, .hero, .build, .impact, .writing, .contact,
+  .career-intro .eyebrow, .career-intro .section-subhead { display: none; }
 
-  :focus-visible,
-  .social-links a:focus-visible {
-    outline: none;
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
   }
-
-  body {
-    background: #fff;
-    color: #000;
-    font-size: 10pt;
-    line-height: 1.35;
-  }
-
-  .cv-header {
-    margin: 0;
-    padding: 0;
-  }
-
-  main {
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  h1 {
-    font-size: 24pt;
-    letter-spacing: normal;
-  }
-
-  h2 {
-    margin-bottom: 3mm;
-    font-size: 14pt;
-  }
-
-  h3,
-  .role {
-    font-size: 11pt;
-  }
-
-  .role {
-    margin-bottom: 2mm;
-  }
-
-  h1,
-  h2,
-  h3,
-  .organization,
-  .period {
-    break-after: avoid;
-  }
-
-  section {
-    margin-top: 6mm;
-  }
-
-  article + article {
-    margin-top: 5mm;
-  }
-
-  p {
-    margin-block: 2mm;
-    orphans: 3;
-    widows: 3;
-  }
-
-  article,
-  figure,
-  li {
-    break-inside: avoid;
-  }
-
-  ul {
-    margin-block: 2mm;
-  }
-
-  li + li {
-    margin-top: 0;
-  }
-
-  a,
-  h2,
-  .role,
-  .organization,
-  .period {
-    color: #000;
-  }
-
-  .keywords {
-    gap: 1mm 3mm;
-  }
-
-  #profiles a {
-    padding: 0;
-  }
-
-  #profiles a[href]::after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
-  }
+  body { background: #fff; color: #000; font-size: 10pt; line-height: 1.35; }
+  a, h2, .role, .organization, .period, .career-location, .career-detail > p:not(.organization),
+  .resume-extras article > p:not(.period), li::marker { color: #000; }
+  main, .resume, .resume > section { width: auto; max-width: none; margin: 0; padding: 0; background: #fff; }
+  .cv-header { display: block; }
+  .print-name { font-size: 24pt; font-weight: 650; line-height: 1.2; letter-spacing: normal; }
+  .role { font-size: 11pt; }
+  .cv-header p { margin-block: 2mm; }
+  .social-links { display: block; margin-block: 2mm; }
+  .social-links a { min-height: 0; padding: 0; font-size: 9pt; }
+  .social-links a[href]::after { content: " (" attr(href) ")"; }
+  .social-links svg { display: none; }
+  .career-intro { margin: 6mm 0 3mm; text-align: left; }
+  h2, .career-intro h2, .resume-extras h2 { margin: 0 0 3mm; font-size: 14pt; letter-spacing: normal; line-height: 1.2; }
+  h3, .career-detail h3, .resume-extras h3 { font-size: 11pt; letter-spacing: normal; }
+  .career-entry { display: block; padding: 0; margin-top: 5mm; border: 0; }
+  .career-when { display: flex; justify-content: space-between; margin-bottom: 1mm; }
+  .period, .career-location { margin: 0; font-size: 9pt; }
+  .organization { margin: 1mm 0; font-size: 10pt; }
+  .career-detail { font-size: 10pt; }
+  .career-detail ul { margin-block: 2mm; }
+  .career-detail li + li { margin-top: 0; }
+  .resume .resume-extras { display: block; margin-top: 6mm; padding-top: 0; border: 0; }
+  .resume-extras article { margin-top: 3mm; }
+  #skills { display: block; break-inside: avoid; }
+  #skills article + article { margin-top: 3mm; }
+  .keywords { gap: 1mm 3mm; margin-block: 1mm; }
+  .keywords li, .interests ul { font-size: 10pt; }
+  .interests ul { gap: 3mm; margin-block: 2mm; }
+  h2, h3, .career-when, .organization { break-after: avoid; }
+  .career-detail { break-before: avoid; }
+  .career-entry, figure, li { break-inside: avoid; }
+  p { orphans: 3; widows: 3; }
+  :focus-visible { outline: none; }
 }
