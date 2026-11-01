@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+
 {% component resume.date(value: string) -%}
 <time datetime="{{ value }}">
   {%- if value | length == 4 -%}
@@ -20,20 +22,9 @@
   {% endif %}
 {% endcomponent resume.period %}
 
+{% block content %}
 {% set resume = load_data(path="resume.json") %}
-<!DOCTYPE html>
-<html lang="{{ config.default_language }}">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ config.description }}">
-    <title>{{ resume.basics.name }} — {{ config.description }}</title>
-    <link rel="icon" href="{{ get_url(path='favicon.ico') }}">
-    <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
-  </head>
-  <body>
-    <main>
-      <header>
+      <header class="cv-header">
         <h1>{{ resume.basics.name }}</h1>
         {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait of {{ resume.basics.name }}" width="96" height="96">{% endif %}
         {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
@@ -141,9 +132,4 @@
       </section>
       {% endif %}
 
-    </main>
-    <footer class="social-footer">
-      {% include "partials/social-links.html" %}
-    </footer>
-  </body>
-</html>
+{% endblock content %}
