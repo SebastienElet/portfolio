@@ -1,7 +1,8 @@
 {
   "basics": {
     "name": "Sébastien Elet",
-    "label": "Programmer",
+    "label": "Staff Engineer · Node.js / TypeScript · SaaS B2B · AI-augmented",
+    "summary": "En 19 ans, j'ai fait évoluer des plateformes SaaS de la startup jusqu'au groupe — sans jamais sacrifier la vélocité pour la stabilité. Aujourd'hui Staff Engineer chez Septeo ADB, je dirige l'équipe technique syndic sur Lobby : 90 syndics, 681 utilisateurs, 155 000 copropriétaires.",
     "picture": "",
     "email": "",
     "phone": "",
@@ -24,6 +25,55 @@
     ]
   },
   "work": [
+    {
+      "name": "SEPTEO ADB",
+      "position": "Staff Engineer",
+      "location": "À distance",
+      "startDate": "2025-10",
+      "summary": "Direction de l'équipe technique syndic sur la plateforme Lobby (Node.js / GraphQL / PostgreSQL / AWS / Kubernetes). Compétences : React.js, PostgreSQL, TypeScript.",
+      "highlights": [
+        "Pilotage de l'équipe migration pour l'onboarding des nouveaux clients.",
+        "Plateforme en production : 90 syndics · 681 utilisateurs · 155 000 copropriétaires."
+      ]
+    },
+    {
+      "name": "Inch",
+      "position": "Staff Engineer",
+      "location": "À distance",
+      "startDate": "2024-03",
+      "endDate": "2025-10",
+      "summary": "Référent technique sur Lobby, plateforme SaaS de gestion immobilière. Compétences : React.js, PostgreSQL, TypeScript.",
+      "highlights": [
+        "Stabilisation de l'architecture post-acquisition, migration des nouveaux clients, support des équipes produit."
+      ]
+    },
+    {
+      "name": "Bellman",
+      "position": "Staff Engineer",
+      "location": "À distance",
+      "startDate": "2022-03",
+      "endDate": "2024-02",
+      "summary": "Compétences : React.js, PostgreSQL, TypeScript.",
+      "highlights": [
+        "Conçu et piloté la refonte complète du datamodel pour passer d'une architecture mono-tenant à SaaS. Résultat : 90 clients migrés en production.",
+        "Développé un moteur d'import depuis les logiciels concurrents pour supprimer le frein à l'acquisition. 10 logiciels supportés. Temps de migration réduit de 6 mois à 6-8 semaines.",
+        "Remplacé le provider tiers par une intégration EBICS propriétaire. Résultat : élimination des doublons de transactions et import de ~2 millions de lignes de transactions bancaires."
+      ]
+    },
+    {
+      "name": "Bellman",
+      "position": "Senior Developer",
+      "location": "À distance",
+      "startDate": "2020-09",
+      "endDate": "2022-03",
+      "summary": "Compétences : React.js, PostgreSQL, TypeScript.",
+      "highlights": [
+        "Couverture de tests : montée de 0 à 50% de couverture d'intégration sur une codebase Node.js / Prisma, réduisant significativement les régressions en production.",
+        "Télétransmission des chèques : développé le module de traitement automatisé — 130 000 chèques traités.",
+        "Mensualisation des charges : implémenté la mensualisation du paiement pour 18 000 copropriétaires.",
+        "Features métier critiques : génération automatique de CERFA, facturation des honoraires de syndic, envoi des mises en demeure."
+      ]
+    },
     {
       "company": "SimpliField",
       "position": "Lead backend developer",
