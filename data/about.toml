@@ -1,0 +1,27 @@
+intro = "I don't write code anymore. I build the harness that does."
+practice = "I spend my time on product and on improving the setup that lets AI agents do the coding."
+object = "I own a mechanical calculator. This page borrows its sense of order."
+background = "I got into software by repairing and using open-source projects. I like understanding the whole chain, from hardware architecture to networks to software."
+
+[[notes]]
+id = "working-method"
+number = "1"
+title = "On the tools"
+text = "I don't think languages, frameworks and tools are optimized for AI. Improving the harness is part of my work now."
+
+[[notes]]
+id = "bellman"
+number = "2"
+title = "On Bellman"
+text = "Bellman is the project I'm proudest of. It grew very quickly, then ran out of money. Both belong in the record."
+
+[[notes]]
+id = "production"
+number = "3"
+title = "On production"
+text = "I once dropped a production database. I care about quality and security. That first sentence is also on the record."
+
+[off_duty]
+title = "Away from the desk"
+text = "I live in the countryside. I like calm and nature. Friends and colleagues describe me as a discreet worker who listens."
+interests = "I lose track of time with archery, motorsport and AI. Archery is my passion. The mechanical calculator is staying."

@@ -7,12 +7,18 @@
   .site-header,
   .site-footer,
   nav,
-  .skip-link {
+  .skip-link,
+  .register-bar,
+  .introduction,
+  .notes,
+  .entry-number,
+  .entry-note,
+  .ledger-labels,
+  .section-heading > .stamp {
     display: none;
   }
 
-  :focus-visible,
-  .social-links a:focus-visible {
+  :focus-visible {
     outline: none;
   }
 
@@ -23,16 +29,17 @@
     line-height: 1.35;
   }
 
-  .cv-header {
-    margin: 0;
-    padding: 0;
-  }
-
   main {
     width: auto;
     max-width: none;
     margin: 0;
     padding: 0;
+  }
+
+  .cv-header {
+    margin: 0;
+    padding: 0 0 3mm;
+    border-bottom: 1px solid #000;
   }
 
   h1 {
@@ -41,8 +48,8 @@
   }
 
   h2 {
-    margin-bottom: 3mm;
     font-size: 14pt;
+    margin-bottom: 3mm;
   }
 
   h3,
@@ -50,8 +57,64 @@
     font-size: 11pt;
   }
 
+  .role,
+  .organization,
+  .period,
+  .skill-label span {
+    color: #000;
+  }
+
   .role {
-    margin-bottom: 2mm;
+    margin-top: 2mm;
+  }
+
+  .record-layout,
+  .ledger-entry,
+  .inventory article {
+    display: block;
+  }
+
+  .record-layout {
+    padding: 0;
+  }
+
+  .record > section + section {
+    margin-top: 6mm;
+  }
+
+  #experience {
+    margin-top: 5mm;
+  }
+
+  .professional-summary {
+    margin-block: 0 4mm;
+  }
+
+  .ledger-entry,
+  .inventory article {
+    padding: 0;
+    border: 0;
+  }
+
+  .ledger-entry + .ledger-entry,
+  .inventory article,
+  #education article {
+    margin-top: 4mm;
+  }
+
+  .ledger-entry .period {
+    display: block;
+    font-size: 9pt;
+    margin-bottom: 1mm;
+    line-height: 1.35;
+  }
+
+  .ledger-entry .period time {
+    display: inline;
+  }
+
+  .organization {
+    margin-block: 1mm 2mm;
   }
 
   h1,
@@ -62,52 +125,63 @@
     break-after: avoid;
   }
 
-  section {
-    margin-top: 6mm;
-  }
-
-  article + article {
-    margin-top: 5mm;
-  }
-
   p {
     margin-block: 2mm;
     orphans: 3;
     widows: 3;
   }
 
-  article,
   figure,
-  li {
+  li,
+  .inventory article,
+  #education article {
     break-inside: avoid;
   }
 
-  ul {
+  .entry-content ul {
     margin-block: 2mm;
+    padding-left: 4mm;
   }
 
   li + li {
     margin-top: 0;
   }
 
-  a,
-  h2,
-  .role,
-  .organization,
-  .period {
+  li::marker {
     color: #000;
   }
 
   .keywords {
     gap: 1mm 3mm;
+    margin-top: 1mm;
   }
 
-  #profiles a {
-    padding: 0;
+  .skill-label {
+    display: flex;
+    gap: 3mm;
+    align-items: baseline;
   }
 
-  #profiles a[href]::after {
-    content: " (" attr(href) ")";
+  .print-profiles {
+    display: block;
+  }
+
+  .print-profiles .social-links {
+    display: block;
+    margin-top: 2mm;
     font-size: 9pt;
+
+    a {
+      min-height: 0;
+      padding: 0;
+    }
+
+    a[href]::after {
+      content: " (" attr(href) ")";
+    }
+
+    svg {
+      display: none;
+    }
   }
 }
