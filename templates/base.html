@@ -47,7 +47,6 @@
   <body id="top">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
-      <a class="site-name" href="{{ get_url(path='/') }}">{{ config.title }}</a>
       <nav aria-label="Primary">
         <ul>
           {% block nav_links %}
@@ -61,7 +60,6 @@
     </main>
     <footer class="site-footer">
       {% block footer_content %}
-      <p>{{ config.title }}</p>
       {% include "partials/social-links.html" %}
       <a href="#top">Back to top</a>
       {% endblock footer_content %}

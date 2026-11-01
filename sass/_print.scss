@@ -4,6 +4,15 @@
 }
 
 @media print {
+  :root {
+    color-scheme: light;
+    --paper: #fff;
+    --ink: #000;
+    --muted: #000;
+    font-size: 10pt;
+    line-height: 1.35;
+  }
+
   .site-header,
   .site-footer,
   nav,
@@ -11,53 +20,25 @@
     display: none;
   }
 
-  :focus-visible,
-  .social-links a:focus-visible {
+  :focus-visible {
     outline: none;
   }
 
-  body {
-    background: #fff;
-    color: #000;
-    font-size: 10pt;
-    line-height: 1.35;
-  }
-
-  .cv-header {
-    margin: 0;
-    padding: 0;
-  }
-
+  body,
   main {
-    width: auto;
     max-width: none;
     margin: 0;
     padding: 0;
   }
 
-  h1 {
-    font-size: 24pt;
-    letter-spacing: normal;
-  }
-
   h2 {
     margin-bottom: 3mm;
-    font-size: 14pt;
-  }
-
-  h3,
-  .role {
-    font-size: 11pt;
-  }
-
-  .role {
-    margin-bottom: 2mm;
   }
 
   h1,
   h2,
   h3,
-  .organization,
+  .entry-meta,
   .period {
     break-after: avoid;
   }
@@ -70,7 +51,8 @@
     margin-top: 5mm;
   }
 
-  p {
+  p,
+  ul {
     margin-block: 2mm;
     orphans: 3;
     widows: 3;
@@ -78,36 +60,28 @@
 
   article,
   figure,
-  li {
+  li,
+  #skills,
+  #education,
+  #interests {
     break-inside: avoid;
-  }
-
-  ul {
-    margin-block: 2mm;
   }
 
   li + li {
     margin-top: 0;
   }
 
-  a,
-  h2,
-  .role,
-  .organization,
-  .period {
-    color: #000;
+  .cv-header .social-links {
+    display: block;
+    margin-top: 2mm;
   }
 
-  .keywords {
-    gap: 1mm 3mm;
-  }
-
-  #profiles a {
+  .social-links a {
     padding: 0;
+    font-size: 9pt;
   }
 
-  #profiles a[href]::after {
+  .social-links a::after {
     content: " (" attr(href) ")";
-    font-size: 9pt;
   }
 }

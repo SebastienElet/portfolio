@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% block nav_links %}
+<li><a href="#experience">Experience</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#education">Education</a></li>
+{% endblock nav_links %}
+
 {% component resume.date(value: string) -%}
 <time datetime="{{ value }}">
   {%- if value | length == 4 -%}
@@ -26,7 +32,6 @@
 {% set resume = load_data(path="resume.json") %}
       <header class="cv-header">
         <h1>{{ resume.basics.name }}</h1>
-        {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait of {{ resume.basics.name }}" width="96" height="96">{% endif %}
         {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
         {% if resume.basics.summary %}<p>{{ resume.basics.summary }}</p>{% endif %}
         {% if resume.basics.email or resume.basics.phone or resume.basics.url %}
@@ -48,8 +53,10 @@
         <article>
           <h3>{{ experience.position }}</h3>
           {% set organization = experience.name | default(value=experience.company | default(value="")) %}
-          {% if organization or experience.location %}<p class="organization">{{ organization }}{% if organization and experience.location %} · {% endif %}{% if experience.location %}{{ experience.location }}{% endif %}</p>{% endif %}
-          {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
+          <div class="entry-meta">
+            {% if organization or experience.location %}<p>{{ organization }}{% if organization and experience.location %} · {% endif %}{% if experience.location %}{{ experience.location }}{% endif %}</p>{% endif %}
+            {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
+          </div>
           {% if experience.summary %}<p>{{ experience.summary }}</p>{% endif %}
           {% if experience.highlights %}
           <ul>
@@ -68,14 +75,9 @@
         <h2 id="skills-title">Skills</h2>
         {% for skill in resume.skills %}
         <article>
-          <h3>{{ skill.name }}</h3>
-          {% if skill.level %}<p>{{ skill.level }}</p>{% endif %}
+          <h3>{{ skill.name }}{% if skill.level %}<span class="metadata"> · {{ skill.level }}</span>{% endif %}</h3>
           {% if skill.keywords %}
-          <ul class="keywords">
-            {% for keyword in skill.keywords %}
-            <li>{{ keyword }}</li>
-            {% endfor %}
-          </ul>
+          <p>{{ skill.keywords | join(sep=", ") }}</p>
           {% endif %}
         </article>
         {% endfor %}
