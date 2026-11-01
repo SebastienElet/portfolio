@@ -4,15 +4,19 @@
 }
 
 @media print {
+  :root {
+    color-scheme: light;
+  }
+
   .site-header,
   .site-footer,
   nav,
-  .skip-link {
+  .skip-link,
+  .screen-only {
     display: none;
   }
 
-  :focus-visible,
-  .social-links a:focus-visible {
+  :focus-visible {
     outline: none;
   }
 
@@ -23,51 +27,158 @@
     line-height: 1.35;
   }
 
-  .cv-header {
-    margin: 0;
-    padding: 0;
-  }
-
   main {
+    display: flex;
+    flex-direction: column;
     width: auto;
     max-width: none;
     margin: 0;
     padding: 0;
   }
 
+  .experience-grid,
+  .cv-header,
+  .skill-groups,
+  .education-grid,
+  .card-heading,
+  .experience-heading,
+  .section-heading {
+    display: block;
+  }
+
+  .card {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .bento-grid {
+    display: contents;
+  }
+
+  .cv-header {
+    order: 0;
+  }
+
+  .current-role {
+    order: 1;
+  }
+
+  .skills {
+    order: 3;
+  }
+
+  .interests {
+    order: 6;
+  }
+
+  .experience {
+    order: 2;
+  }
+
+  .education {
+    order: 4;
+  }
+
+  .publications {
+    order: 5;
+  }
+
+  .references {
+    order: 7;
+  }
+
   h1 {
+    margin-bottom: 2mm;
     font-size: 24pt;
     letter-spacing: normal;
   }
 
-  h2 {
+  h2,
+  .section-heading h2 {
     margin-bottom: 3mm;
     font-size: 14pt;
   }
 
   h3,
-  .role {
+  .role,
+  .current-role h3 {
     font-size: 11pt;
   }
 
-  .role {
+  .role,
+  .summary {
+    max-width: none;
     margin-bottom: 2mm;
+  }
+
+  .period,
+  .location,
+  .skill-level {
+    font-size: 9pt;
+  }
+
+  .hero-profiles,
+  .card-heading,
+  .section-heading {
+    margin: 0;
+  }
+
+  .organization,
+  .current-organization {
+    margin: 0 0 2mm;
+    font-size: 12pt;
+    font-weight: 650;
+    letter-spacing: normal;
+  }
+
+  .experience-heading .location {
+    margin-block: 2mm;
+  }
+
+  .experience-heading {
+    display: flex;
+  }
+
+  .skill-groups {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4mm;
+  }
+
+  .skills,
+  .education {
+    break-inside: avoid;
   }
 
   h1,
   h2,
   h3,
   .organization,
+  .current-organization,
   .period {
     break-after: avoid;
   }
 
-  section {
+  section.card,
+  .experience {
     margin-top: 6mm;
   }
 
-  article + article {
+  .experience-card + .experience-card,
+  .education-grid article + article {
     margin-top: 5mm;
+  }
+
+  .experience-card .period {
+    margin-block: 2mm;
+  }
+
+  .closing-grid {
+    margin: 0;
   }
 
   p {
@@ -77,12 +188,14 @@
   }
 
   article,
+  .current-role,
   figure,
   li {
     break-inside: avoid;
   }
 
-  ul {
+  ul,
+  .highlights {
     margin-block: 2mm;
   }
 
@@ -94,20 +207,60 @@
   h2,
   .role,
   .organization,
-  .period {
+  .current-organization,
+  .period,
+  .location,
+  .skill-level,
+  .interests li span,
+  li::marker {
     color: #000;
   }
 
   .keywords {
     gap: 1mm 3mm;
+
+    li {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      font-size: 10pt;
+    }
   }
 
-  #profiles a {
-    padding: 0;
+  .interests ul {
+    display: block;
+    margin-block: 2mm;
+    padding-left: 1.25rem;
+    list-style: disc;
   }
 
-  #profiles a[href]::after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
+  .interests li {
+    font-size: 10pt;
+    font-weight: 400;
+    letter-spacing: normal;
+  }
+
+  .social-links,
+  .hero-profiles .social-links {
+    display: block;
+    margin-block: 2mm;
+
+    a {
+      display: inline;
+      min-height: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #000;
+      font-size: 9pt;
+    }
+
+    a[href]::after {
+      content: " (" attr(href) ")";
+    }
+
+    svg {
+      display: none;
+    }
   }
 }
