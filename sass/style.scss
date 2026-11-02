@@ -24,21 +24,21 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --paper: #14191d;
-    --surface: #1c2328;
-    --wash: #202a30;
+    --surface: #222c33;
+    --wash: #2b3840;
     --ink: #e8edef;
     --muted: #a8b5bd;
     --accent: #95c9df;
-    --line: #46545f;
-    --rule: #687b88;
+    --line: #536572;
+    --rule: #7a8d9a;
     --drawing-ink: var(--rule);
     --drawing-detail: var(--line);
     --callout-surface: var(--paper);
-    --statement-surface: var(--paper);
+    --statement-surface: #203b46;
     --statement-ink: var(--ink);
     --statement-label: var(--muted);
     --statement-copy: var(--ink);
-    --statement-border: var(--line);
+    --statement-border: var(--accent);
   }
 }
 
