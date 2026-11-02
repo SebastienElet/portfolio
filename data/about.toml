@@ -1,0 +1,50 @@
+revision = "04"
+date = "November 2026"
+intro = "I like understanding the whole chain, from hardware architecture to the software on top."
+current = "Today I work on product and the harness that lets AI agents do the coding."
+quality = "I care about quality and security at every layer."
+database = "I once dropped a production database. I would prefer this to remain a past-tense sentence."
+quiet = "I live in the countryside. I like the calm."
+listening = "Friends and colleagues describe me as a discreet worker who listens."
+outside = "Away from software, I lose track of time with archery and motorsport. AI has found its way onto that list too."
+object = "The object that says something about me: a mechanical calculator."
+
+[[layers]]
+number = "05"
+id = "harness"
+name = "Harness"
+label = "Present work"
+lead = "I don't write code anymore. I build the harness that does."
+text = "I don't think languages, frameworks and tools are optimized for AI. Improving the setup that lets agents code is now part of my day-to-day work."
+
+[[layers]]
+number = "04"
+id = "product"
+name = "Product"
+label = "What it is for"
+lead = "Bellman is the project I'm proudest of."
+text = "It grew at a meteoric pace. Then it ran out of funds. Both are part of the story."
+
+[[layers]]
+number = "03"
+id = "software"
+name = "Software"
+label = "Where I started"
+lead = "I got into development by repairing and using open-source projects."
+text = "Node.js and TypeScript are where much of my work lives today."
+
+[[layers]]
+number = "02"
+id = "network"
+name = "Network"
+label = "Between machines"
+lead = "My understanding of a system includes the network."
+text = "At Denaroo, my work included IPBX maintenance with SIP/PSTN. At SimpliField, it included moving servers from baremetal to VMware vSphere."
+
+[[layers]]
+number = "01"
+id = "hardware"
+name = "Hardware"
+label = "The foundation"
+lead = "I look below the software, down to the hardware architecture."
+text = "Understanding the whole chain is one of my strengths."
