@@ -22,114 +22,114 @@
   {% endif %}
 {% endcomponent resume.period %}
 
+{% block nav_links %}
+<li><a href="#panels">Overview</a></li>
+<li><a href="#cv">Full CV</a></li>
+{% endblock nav_links %}
+
 {% block content %}
 {% set resume = load_data(path="resume.json") %}
-      <header class="cv-header">
-        <h1>{{ resume.basics.name }}</h1>
-        {% if resume.basics.picture %}<img class="portrait" src="{{ resume.basics.picture }}" alt="Portrait of {{ resume.basics.name }}" width="96" height="96">{% endif %}
-        {% if resume.basics.label %}<p class="role">{{ resume.basics.label }}</p>{% endif %}
-        {% if resume.basics.summary %}<p>{{ resume.basics.summary }}</p>{% endif %}
-        {% if resume.basics.email or resume.basics.phone or resume.basics.url %}
-        <address>
-          <ul>
-            {% if resume.basics.email %}<li><a href="mailto:{{ resume.basics.email }}">{{ resume.basics.email }}</a></li>{% endif %}
-            {% if resume.basics.phone %}<li><a href="tel:{{ resume.basics.phone }}">{{ resume.basics.phone }}</a></li>{% endif %}
-            {% if resume.basics.url %}<li><a href="{{ resume.basics.url }}">{{ resume.basics.url }}</a></li>{% endif %}
-          </ul>
-        </address>
-        {% endif %}
-        {% include "partials/social-links.html" %}
-      </header>
+{% set about = load_data(path="data/about.toml") %}
+<div class="hero">
+  {% include "partials/chain-drawing.html" %}
+  <header class="title-block">
+    <div class="identity">
+      <p class="stamp screen-only">Personal drawing / SE</p>
+      <h1>{{ resume.basics.name }}</h1>
+      <p class="role">{{ resume.basics.label }}</p>
+      {% include "partials/social-links.html" %}
+    </div>
+    <div class="introduction">
+      <p>{{ about.intro }}</p>
+      <p>{{ about.current }}</p>
+      <a class="cv-link" href="#cv">Full curriculum vitae <span aria-hidden="true">↓</span></a>
+    </div>
+    <dl class="drawing-register">
+      <div><dt>Drawing</dt><dd>Full-stack chain</dd></div>
+      <div><dt>Revision</dt><dd>{{ about.revision }} / {{ about.date }}</dd></div>
+      <div><dt>View</dt><dd>Section A–A · not to scale</dd></div>
+    </dl>
+  </header>
+</div>
 
-      {% if resume.work %}
-      <section id="experience" aria-labelledby="experience-title">
-        <h2 id="experience-title">Work Experience</h2>
-        {% for experience in resume.work %}
-        <article>
-          <h3>{{ experience.position }}</h3>
-          {% set organization = experience.name | default(value=experience.company | default(value="")) %}
-          {% if organization or experience.location %}<p class="organization">{{ organization }}{% if organization and experience.location %} · {% endif %}{% if experience.location %}{{ experience.location }}{% endif %}</p>{% endif %}
-          {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
-          {% if experience.summary %}<p>{{ experience.summary }}</p>{% endif %}
-          {% if experience.highlights %}
-          <ul>
-            {% for highlight in experience.highlights %}
-            <li>{{ highlight }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-        </article>
-        {% endfor %}
-      </section>
-      {% endif %}
+<div id="panels" class="bento-grid">
+  {% for experience in resume.work[:1] %}
+  <section class="panel current-role" aria-labelledby="current-title">
+    <p class="panel-register"><span>Current role</span><span>04 / Product</span></p>
+    <h2 id="current-title">{{ experience.name | default(value=experience.company | default(value="")) }}</h2>
+    <p class="position">{{ experience.position }}</p>
+    {{ <resume.period start={experience.startDate | default(value="")} end={experience.endDate | default(value="")} /> }}
+    {% if experience.summary %}<p>{{ experience.summary }}</p>{% endif %}
+    {% if experience.highlights %}<p class="role-impact">{{ experience.highlights | last }}</p>{% endif %}
+  </section>
+  {% endfor %}
 
-      {% if resume.skills %}
-      <section id="skills" aria-labelledby="skills-title">
-        <h2 id="skills-title">Skills</h2>
-        {% for skill in resume.skills %}
-        <article>
-          <h3>{{ skill.name }}</h3>
-          {% if skill.level %}<p>{{ skill.level }}</p>{% endif %}
-          {% if skill.keywords %}
-          <ul class="keywords">
-            {% for keyword in skill.keywords %}
-            <li>{{ keyword }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-        </article>
-        {% endfor %}
-      </section>
-      {% endif %}
+  <section id="product" class="panel selected-impact" aria-labelledby="bellman-title">
+    <p class="panel-register"><span>Proudest project</span><span>04 / Product</span></p>
+    <h2 id="bellman-title">Bellman</h2>
+    <p>{{ about.layers[1].lead }} {{ about.layers[1].text }}</p>
+    <h3 class="stamp">Selected impact</h3>
+    {% for experience in resume.work %}
+    {% if experience.name | default(value="") == "Bellman" and experience.position == "Staff Engineer" %}
+    <ul class="impact-list">
+      {% for highlight in experience.highlights[:2] %}<li>{{ highlight }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    {% endfor %}
+  </section>
 
-      {% if resume.education %}
-      <section id="education" aria-labelledby="education-title">
-        <h2 id="education-title">Education</h2>
-        {% for education in resume.education %}
-        <article>
-          <h3>{{ education.studyType }}{% if education.studyType and education.area %} — {% endif %}{{ education.area }}</h3>
-          {% if education.institution %}<p>{{ education.institution }}</p>{% endif %}
-          {{ <resume.period start={education.startDate | default(value="")} end={education.endDate | default(value="")} /> }}
-        </article>
-        {% endfor %}
-      </section>
-      {% endif %}
+  <aside class="panel field-note" aria-labelledby="database-title">
+    <p class="panel-register"><span>Field note</span><span>03 / Software</span></p>
+    <h2 id="database-title">Production database</h2>
+    <p>{{ about.database }}</p>
+  </aside>
 
-      {% if resume.publications %}
-      <section id="publications" aria-labelledby="publications-title">
-        <h2 id="publications-title">Publications</h2>
-        {% for publication in resume.publications %}
-        <article>
-          <h3>{% if publication.url %}<a href="{{ publication.url }}">{% endif %}{{ publication.name }}{% if publication.url %}</a>{% endif %}</h3>
-          {% if publication.publisher %}<p>{{ publication.publisher }}</p>{% endif %}
-          {% if publication.releaseDate %}<p class="period">{{ <resume.date value={publication.releaseDate} /> }}</p>{% endif %}
-          {% if publication.summary %}<p>{{ publication.summary }}</p>{% endif %}
-        </article>
-        {% endfor %}
-      </section>
-      {% endif %}
+  <section id="harness" class="panel convictions" aria-labelledby="convictions-title">
+    <p class="panel-register"><span>Convictions</span><span>05 / Harness</span></p>
+    <h2 id="convictions-title">{{ about.layers[0].lead }}</h2>
+    <p>{{ about.layers[0].text }}</p>
+    <p class="quality-note">{{ about.quality }}</p>
+  </section>
 
-      {% if resume.interests %}
-      <section id="interests" aria-labelledby="interests-title">
-        <h2 id="interests-title">Interests</h2>
-        <ul>
-          {% for interest in resume.interests %}
-          <li>{{ interest.name }}{% if interest.keywords %} — {{ interest.keywords | join(sep=", ") }}{% endif %}</li>
-          {% endfor %}
+  <section id="software" class="panel toolkit" aria-labelledby="toolkit-title">
+    <p class="panel-register"><span>Skills</span><span>03 / Software</span></p>
+    <h2 id="toolkit-title">Technical toolkit</h2>
+    <p>{{ about.layers[2].lead }}</p>
+    <div class="skill-groups">
+      {% for skill in resume.skills %}
+      <div>
+        <h3>{{ skill.name }}</h3>
+        <ul class="skill-chips">
+          {% for keyword in skill.keywords %}<li>{{ keyword }}</li>{% endfor %}
         </ul>
-      </section>
-      {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </section>
 
-      {% if resume.references %}
-      <section id="references" aria-labelledby="references-title">
-        <h2 id="references-title">References</h2>
-        {% for reference in resume.references %}
-        <figure>
-          {% if reference.reference %}<blockquote><p>{{ reference.reference }}</p></blockquote>{% endif %}
-          {% if reference.name %}<figcaption>{{ reference.name }}</figcaption>{% endif %}
-        </figure>
-        {% endfor %}
-      </section>
-      {% endif %}
+  <section class="panel off-duty" aria-labelledby="off-duty-title">
+    <p class="panel-register"><span>Off the drawing</span><span>SE / Personal</span></p>
+    <h2 id="off-duty-title">Away from the drawing</h2>
+    <p>{{ about.quiet }}</p>
+    <p>{{ about.outside }}</p>
+    <p>{{ about.object }}</p>
+    <p class="listening-note">{{ about.listening }}</p>
+  </section>
+</div>
 
+<div id="cv" class="curriculum-vitae">
+  <header class="cv-intro">
+    <div class="section-heading"><h2>Curriculum vitae</h2><a href="#experience">Work experience <span aria-hidden="true">↓</span></a></div>
+    {% if resume.basics.summary %}<p>{{ resume.basics.summary }}</p>{% endif %}
+    {% if resume.basics.email or resume.basics.phone or resume.basics.url %}
+    <address><ul>
+      {% if resume.basics.email %}<li><a href="mailto:{{ resume.basics.email }}">{{ resume.basics.email }}</a></li>{% endif %}
+      {% if resume.basics.phone %}<li><a href="tel:{{ resume.basics.phone }}">{{ resume.basics.phone }}</a></li>{% endif %}
+      {% if resume.basics.url %}<li><a href="{{ resume.basics.url }}">{{ resume.basics.url }}</a></li>{% endif %}
+    </ul></address>
+    {% endif %}
+  </header>
+  <div id="hardware" class="cv-annotations"><p><span class="callout">01</span>{{ about.layers[4].lead }}</p><p id="network"><span class="callout">02</span>{{ about.layers[3].text }}</p></div>
+  {% include "partials/cv.html" %}
+</div>
 {% endblock content %}

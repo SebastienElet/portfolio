@@ -26,8 +26,9 @@ zola build
 `config.toml` sets the site URL to `https://sebastien.elet.fr`. Templates live in
 `templates/`, styles in `sass/`, and assets in `static/`. Zola copies
 `static/CNAME` into the generated site. The resume data stays in `resume.json`
-at the repository root and is loaded directly by the homepage template to render
-the CV. Update that file to change the CV content.
+at the repository root and is loaded by the homepage and `templates/partials/cv.html`
+to render the complete CV. Update that file to change the CV content. Personal
+copy and drawing annotations live in `data/about.toml`.
 
 ## Layout and sharing
 
