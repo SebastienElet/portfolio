@@ -24,11 +24,11 @@ zola build
 ```
 
 `config.toml` sets the site URL to `https://sebastien.elet.fr`. Templates live in
-`templates/`, styles in `sass/`, and assets in `static/`. Zola copies
-`static/CNAME` into the generated site. The resume data stays in `resume.json`
-at the repository root and is loaded by the homepage and `templates/partials/cv.html`
-to render the complete CV. Update that file to change the CV content. Personal
-copy, layer annotations and drawing revision details live in `data/about.toml`.
+`templates/`, styles in `sass/`, and assets in `static/`. The resume data stays in
+`resume.json` at the repository root and is loaded by the homepage and
+`templates/partials/cv.html` to render the complete CV. Update that file to change
+the CV content. Personal copy, layer annotations and drawing revision details
+live in `data/about.toml`.
 
 ## Layout and sharing
 
@@ -58,6 +58,14 @@ The stylesheet uses local system fonts and requires no JavaScript. Printing the
 CV uses A4 with 15 mm margins, hides site navigation and footer, and keeps headings
 with their content. Use the browser's print preview to check page breaks after
 changing the resume. Disable browser-added headers and footers for a clean PDF.
+
+## Deployment
+
+Cloudflare Pages builds this repository through its Git integration. Pushes to
+`main` deploy production; other branches and pull requests receive previews.
+Response headers, including the CSP, are defined in `static/_headers`. See the
+[deployment guide](docs/deployment-cloudflare.md) for the `ZOLA_VERSION=0.23.6`
+pin in Production and Preview, project settings, response headers and Vercel cleanup.
 
 ## License
 
