@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Tags{% endblock title %}
+
+{% block content %}
+<header>
+  <h1>Tags</h1>
+  <p><a href="{{ get_url(path='@/blog/_index.md') }}">All posts</a></p>
+</header>
+{% if terms %}
+<ul class="blog-tag-list">
+  {% for term in terms %}
+  <li><a href="{{ term.permalink }}">{{ term.name }}</a> ({{ term.page_count }})</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="blog-empty">Tags will appear when posts are published.</p>
+{% endif %}
+{% endblock content %}

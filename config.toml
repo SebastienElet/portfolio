@@ -3,3 +3,6 @@ title = "Sébastien Elet"
 description = "Curriculum vitae"
 default_language = "en"
 compile_sass = true
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+taxonomies = [{ name = "tags" }]

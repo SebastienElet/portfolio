@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{ section.title }}{% endblock title %}
+{% block description %}{{ section.description }}{% endblock description %}
+
+{% block content %}
+<header>
+  <h1>{{ section.title }}</h1>
+  <p>{{ section.description }}</p>
+  <p>
+    <a href="{{ get_url(path='atom.xml') }}">Subscribe via Atom</a>
+    {% set tags = get_taxonomy(kind="tags") %}
+    {% if tags.items %} · <a href="{{ get_url(path='tags/') }}">Browse tags</a>{% endif %}
+  </p>
+</header>
+{% set posts = section.pages %}
+{% include "blog/post-list.html" %}
+{% endblock content %}

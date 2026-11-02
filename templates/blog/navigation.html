@@ -1,0 +1,4 @@
+<nav class="blog-navigation" aria-label="Main navigation">
+  <a href="{{ get_url(path='@/_index.md') }}"{% if current_path == "/" %} aria-current="page"{% endif %}>CV</a>
+  <a href="{{ get_url(path='@/blog/_index.md') }}"{% if current_path == "/blog/" %} aria-current="page"{% endif %}>Blog</a>
+</nav>

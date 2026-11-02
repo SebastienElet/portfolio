@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{ term.name }} — Tags{% endblock title %}
+
+{% block content %}
+<header>
+  <h1>Posts tagged “{{ term.name }}”</h1>
+  <p><a href="{{ get_url(path='tags/') }}">All tags</a> · <a href="{{ get_url(path='@/blog/_index.md') }}">All posts</a></p>
+</header>
+{% set posts = term.pages %}
+{% include "blog/post-list.html" %}
+{% endblock content %}
