@@ -1,0 +1,71 @@
+{% set document_title = config.title %}
+{% set description = config.description %}
+{% set social_image = "images/social-card.png" %}
+{% set social_image_alt = config.title ~ " — Staff Engineer" %}
+{% if page %}
+  {% set document = page %}
+{% elif section %}
+  {% set document = section %}
+{% endif %}
+{% if document %}
+  {% if document.title %}{% set document_title = document.title ~ " — " ~ config.title %}{% endif %}
+  {% if document.description %}{% set description = document.description %}{% endif %}
+  {% if document.extra.social_image %}{% set social_image = document.extra.social_image %}{% endif %}
+  {% if document.extra.social_image_alt %}{% set social_image_alt = document.extra.social_image_alt %}{% endif %}
+{% endif %}
+{% if social_image is starting_with(pat="https://") %}
+  {% set social_image_url = social_image %}
+{% else %}
+  {% set social_image_url = get_url(path=social_image) %}
+{% endif %}
+{% set canonical_url = current_url | default(value=get_url(path="/")) %}
+<!DOCTYPE html>
+<html lang="{{ lang | default(value=config.default_language) }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>{% block title %}{{ document_title }}{% endblock title %}</title>
+    <meta name="description" content="{{ description }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta property="og:type" content="{% if page %}article{% else %}website{% endif %}">
+    <meta property="og:site_name" content="{{ config.title }}">
+    <meta property="og:title" content="{{ document_title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:image" content="{{ social_image_url }}">
+    <meta property="og:image:alt" content="{{ social_image_alt }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ document_title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ social_image_url }}">
+    <meta name="twitter:image:alt" content="{{ social_image_alt }}">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="sitemap" type="application/xml" href="{{ get_url(path='sitemap.xml') }}">
+    {% block extra_head %}{% endblock extra_head %}
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <a class="site-name" href="{{ get_url(path='/') }}">{{ config.title }}</a>
+      <nav aria-label="Primary">
+        <ul>
+          {% block nav_links %}
+          <li><a href="{{ get_url(path='/') }}"{% if current_path == '/' %} aria-current="page"{% endif %}>CV</a></li>
+          {% endblock nav_links %}
+        </ul>
+      </nav>
+    </header>
+    <main id="main-content" tabindex="-1">
+      {% block content %}{% endblock content %}
+    </main>
+    <footer class="site-footer">
+      {% block footer_content %}
+      <p>{{ config.title }}</p>
+      {% include "partials/social-links.html" %}
+      <a href="#top">Back to top</a>
+      {% endblock footer_content %}
+    </footer>
+  </body>
+</html>

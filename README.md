@@ -25,12 +25,45 @@ zola build
 
 `config.toml` sets the site URL to `https://sebastien.elet.fr`. Templates live in
 `templates/`, styles in `sass/`, and assets in `static/`. The resume data stays in
-`resume.json` at the repository root and is loaded directly by the homepage
-template to render the CV. Update that file to change the CV content.
+`resume.json` at the repository root and is loaded by the homepage and
+`templates/partials/cv.html` to render the complete CV. Update that file to change
+the CV content. Personal copy, layer annotations and drawing revision details
+live in `data/about.toml`.
+
+## Layout and sharing
+
+`templates/base.html` provides the shared layout and metadata. Other templates
+extend its `content` block. Use `nav_links` for navigation, `footer_content` for
+footer links, and `extra_head` for additions such as feeds. To retain the default
+links when extending a block, call `{{ super() }}`.
+
+Page and section front matter can set `title` and `description`; otherwise metadata
+uses the site title and description from `config.toml`. Social cards use the same
+title and description. Override their image with:
+
+```toml
+[extra]
+social_image = "images/my-social-card.png"
+social_image_alt = "A description of the image"
+```
+
+Place images in `static/`; use a path relative to that directory or an absolute
+HTTPS URL. The default is `static/images/social-card.png` (1200 × 630), with its
+editable SVG source alongside it. Replace both when changing the default card.
+Zola resolves local image URLs against `base_url`, which also supplies canonical
+URLs. Its built-in `sitemap.xml` and `robots.txt` are enabled; the HTML head and
+robots file reference the sitemap.
+
+The stylesheet uses local system fonts and requires no JavaScript. Printing the
+CV uses A4 with 15 mm margins, hides site navigation and footer, and keeps headings
+with their content. Use the browser's print preview to check page breaks after
+changing the resume. Disable browser-added headers and footers for a clean PDF.
 
 ## Deployment
 
-Cloudflare Pages builds this repository through its Git integration. See the
+Cloudflare Pages builds this repository through its Git integration. Pushes to
+`main` deploy production; other branches and pull requests receive previews.
+Response headers, including the CSP, are defined in `static/_headers`. See the
 [deployment guide](docs/deployment-cloudflare.md) for the `ZOLA_VERSION=0.23.6`
 pin in Production and Preview, project settings, response headers and Vercel cleanup.
 

@@ -39,9 +39,10 @@ other branches produce
 [preview deployments](https://developers.cloudflare.com/pages/configuration/preview-deployments/).
 Check the Cloudflare Pages check and its deployment URL on each PR.
 
-`config.toml` keeps `https://sebastien.elet.fr` as the site's base URL, so the
-default preview HTML links to production assets. To preview branch assets too,
-replace the shared build command with
+Stylesheet and favicon URLs are relative to the site root, so previews load their
+own assets. `config.toml` keeps `https://sebastien.elet.fr` as the site's base URL
+for canonical and sharing URLs. To use preview URLs for generated absolute links
+and metadata too, replace the shared build command with
 [Cloudflare's environment-aware variant](https://developers.cloudflare.com/pages/framework-guides/deploy-a-zola-site/):
 
 ```sh
