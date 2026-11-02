@@ -39,7 +39,6 @@ id = "network"
 name = "Network"
 label = "Between machines"
 lead = "My understanding of a system includes the network."
-text = "At Denaroo, my work included IPBX maintenance with SIP/PSTN. At SimpliField, it included moving servers from baremetal to VMware vSphere."
 
 [[layers]]
 number = "01"

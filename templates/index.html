@@ -41,17 +41,18 @@
     <a class="cv-link" href="#cv">Read the full CV <span aria-hidden="true">↘</span></a>
   </div>
   <div class="drawing-index">
-    <svg class="stack-drawing" viewBox="50 0 400 340" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.2" role="img" aria-labelledby="stack-title stack-desc">
+    <svg class="stack-drawing" viewBox="70 8 510 395" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" role="img" aria-labelledby="stack-title stack-desc">
       <title id="stack-title">The full-stack chain</title>
       <desc id="stack-desc">Five exploded plates, from hardware at the bottom through network, software and product to the harness at the top. Numbered callouts link to each layer below.</desc>
-      <path class="axis" d="M225 6v324"/>
+      <path class="axis" d="M240 10v386"/>
       {% for layer in about.layers | reverse %}
-      <g transform="translate(0 {{ (5 - loop.index) * 47 }}) scale(.85)">
+      <g transform="translate(0 {{ (5 - loop.index) * 60 }})">
         {% include "partials/layer-plate.html" %}
         <path class="signal" d="M350 96h55"/>
         <a href="#{{ layer.id }}" aria-label="{{ layer.number }} {{ layer.name }}">
-          <rect class="callout" x="405" y="81" width="38" height="30"/>
-          <text x="424" y="101" text-anchor="middle" stroke="none" fill="currentColor">{{ layer.number }}</text>
+          <rect class="callout" x="405" y="79" width="42" height="34"/>
+          <text x="426" y="102" text-anchor="middle" stroke="none" fill="currentColor">{{ layer.number }}</text>
+          <text class="plate-name" x="461" y="102" stroke="none" fill="currentColor">{{ layer.name }}</text>
         </a>
       </g>
       {% endfor %}
@@ -72,7 +73,7 @@
   {% for layer in about.layers %}
   <section id="{{ layer.id }}" class="layer layer-{{ layer.id }}" aria-labelledby="{{ layer.id }}-title">
     <header class="layer-header">
-      <svg class="plate-fragment" viewBox="75 18 325 135" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+      <svg class="plate-fragment" viewBox="75 18 325 135" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
         {% include "partials/layer-plate.html" %}
       </svg>
       <h2 id="{{ layer.id }}-title"><span class="layer-number">{{ layer.number }}</span>{{ layer.name }}</h2>
@@ -137,7 +138,6 @@
       <article class="panel network-note">
         <h3 class="panel-label">{{ layer.number }}.A / Between machines</h3>
         <p class="panel-lead">{{ layer.lead }}</p>
-        <p>{{ layer.text }}</p>
       </article>
       {% for experience in resume.work[7:8] %}
       <article class="panel network-work">
