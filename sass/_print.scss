@@ -1,113 +1,40 @@
-@page {
-  size: A4;
-  margin: 15mm;
-}
+@page { size: A4; margin: 15mm; }
 
 @media print {
-  .site-header,
-  .site-footer,
-  nav,
-  .skip-link {
-    display: none;
-  }
-
-  :focus-visible,
-  .social-links a:focus-visible {
-    outline: none;
-  }
-
-  body {
-    background: #fff;
-    color: #000;
-    font-size: 10pt;
-    line-height: 1.35;
-  }
-
-  .cv-header {
-    margin: 0;
-    padding: 0;
-  }
-
-  main {
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  h1 {
-    font-size: 24pt;
-    letter-spacing: normal;
-  }
-
-  h2 {
-    margin-bottom: 3mm;
-    font-size: 14pt;
-  }
-
-  h3,
-  .role {
-    font-size: 11pt;
-  }
-
-  .role {
-    margin-bottom: 2mm;
-  }
-
-  h1,
-  h2,
-  h3,
-  .organization,
-  .period {
-    break-after: avoid;
-  }
-
-  section {
-    margin-top: 6mm;
-  }
-
-  article + article {
-    margin-top: 5mm;
-  }
-
-  p {
-    margin-block: 2mm;
-    orphans: 3;
-    widows: 3;
-  }
-
-  article,
-  figure,
-  li {
-    break-inside: avoid;
-  }
-
-  ul {
-    margin-block: 2mm;
-  }
-
-  li + li {
-    margin-top: 0;
-  }
-
-  a,
-  h2,
-  .role,
-  .organization,
-  .period {
-    color: #000;
-  }
-
-  .keywords {
-    gap: 1mm 3mm;
-  }
-
-  #profiles a {
-    padding: 0;
-  }
-
-  #profiles a[href]::after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
-  }
+  .site-header, .site-footer, .skip-link, .drawing-index, .drawing-register,
+  .identity > .stamp, .intro, .cv-link, .chain, .off-drawing, .cv-intro .stamp { display: none; }
+  :root { color-scheme: light; }
+  :focus-visible { outline: none; }
+  body { background: #fff; color: #000; font-size: 10pt; line-height: 1.35; }
+  main { width: auto; max-width: none; margin: 0; padding: 0; }
+  .title-block { display: block; border: 0; background: none; margin: 0 0 4mm; }
+  .identity { padding: 0; }
+  h1 { font-size: 24pt; letter-spacing: normal; }
+  .role { max-width: none; font-size: 11pt; margin: 2mm 0; }
+  .identity .social-links { display: block; margin-block: 2mm; }
+  .social-links a { padding: 0; color: #000; font-size: 9pt; }
+  .social-links a::after { content: " (" attr(href) ")"; }
+  .social-links svg { display: none; }
+  .curriculum-vitae { border: 0; }
+  .cv-intro .section-heading { border: 0; padding: 0; margin: 0; }
+  .cv-intro .section-heading h2 { font-size: 14pt; }
+  .cv-intro > p { max-width: none; margin: 2mm 0 4mm; }
+  .cv-section { border: 0; padding: 0; margin-top: 5mm; }
+  .cv-section > h2 { font-size: 14pt; margin: 0 0 3mm; }
+  .section-content { display: block; }
+  .section-content > article, .section-content > figure { padding: 0; border: 0; border-radius: 0; background: none; }
+  .section-content > article + article, .section-content > figure + figure { margin-top: 4mm; }
+  .section-content h3 { font-size: 11pt; margin-bottom: 1mm; }
+  .section-content p { margin-block: 1mm; }
+  .period { font-family: inherit; font-size: 9pt; }
+  h1, h2, h3, .organization, .period { break-after: avoid; }
+  article, figure, li { break-inside: avoid; }
+  p { orphans: 3; widows: 3; }
+  a, .period, .skill-label { color: #000; }
+  .section-content ul { margin-block: 2mm; }
+  li + li { margin-top: 0; }
+  .skills-list > article + article { margin-top: 2mm; }
+  .skills-list h3, .skills-list p { display: inline; margin-right: 2mm; }
+  .keywords { gap: 1mm 3mm; }
+  .keywords li { border: 0; padding: 0; font-size: 10pt; }
 }
