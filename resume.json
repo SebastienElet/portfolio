@@ -146,24 +146,30 @@
   "references": [],
   "skills": [
     {
-      "keywords": ["html", "css", "javascript", "typescript"],
+      "keywords": ["html", "css", "javascript", "typescript", "React"],
       "level": "senior",
       "name": "frontend"
     },
     {
       "keywords": [
+        "Node.js",
         "expressjs",
+        "Fastify",
+        "NestJS",
+        "GraphQL",
+        "BullMQ",
         "jest",
         "javascript",
         "typescript",
         "postgresql",
+        "Prisma",
         "rust"
       ],
       "level": "senior",
       "name": "backend"
     },
     {
-      "keywords": ["ansible", "GCP", "docker", "k8s"],
+      "keywords": ["ansible", "GCP", "AWS", "docker", "Kubernetes"],
       "level": "senior",
       "name": "ops"
     }
