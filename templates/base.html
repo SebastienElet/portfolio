@@ -13,6 +13,14 @@
   {% if document.extra.social_image %}{% set social_image = document.extra.social_image %}{% endif %}
   {% if document.extra.social_image_alt %}{% set social_image_alt = document.extra.social_image_alt %}{% endif %}
 {% endif %}
+{% if taxonomy %}
+  {% set document_title = "Tags — " ~ config.title %}
+  {% set description = "Browse software engineering articles by topic." %}
+  {% if term %}
+    {% set document_title = term.name ~ " — Tags — " ~ config.title %}
+    {% set description = "Software engineering articles tagged “" ~ term.name ~ "”." %}
+  {% endif %}
+{% endif %}
 {% if social_image is starting_with(pat="https://") %}
   {% set social_image_url = social_image %}
 {% else %}
@@ -43,6 +51,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="/style.css">
     <link rel="sitemap" type="application/xml" href="{{ get_url(path='sitemap.xml') }}">
+    {% include "blog/feed.html" %}
     {% block extra_head %}{% endblock extra_head %}
   </head>
   <body id="top">
@@ -52,7 +61,7 @@
       <nav aria-label="Primary">
         <ul>
           {% block nav_links %}
-          <li><a href="{{ get_url(path='/') }}"{% if current_path == '/' %} aria-current="page"{% endif %}>CV</a></li>
+          {% include "blog/navigation.html" %}
           {% endblock nav_links %}
         </ul>
       </nav>

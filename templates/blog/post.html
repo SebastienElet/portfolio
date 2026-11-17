@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+
+{% block blog_content %}
+<article class="blog-post">
+  <header class="blog-heading">
+    <p class="stamp"><a href="{{ get_url(path='@/blog/_index.md') }}">Blog</a> / Article</p>
+    <h1>{{ page.title }}</h1>
+    <p class="blog-meta">
+      <time datetime="{{ page.date }}">{{ page.date | date(format="d MMMM y", locale="en") }}</time>
+      {% if page.draft %}<span>Draft</span>{% endif %}
+    </p>
+    {% if page.description %}<p class="blog-intro">{{ page.description }}</p>{% endif %}
+    {% if page.taxonomies.tags %}
+    <ul class="blog-tags keywords" aria-label="Post tags">
+      {% for tag in page.taxonomies.tags %}
+      <li><a href="{{ get_taxonomy_url(kind='tags', name=tag) }}">{{ tag }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </header>
+  <div class="panel blog-content"><div class="blog-prose">{{ page.content | safe }}</div></div>
+</article>
+<p class="blog-back"><a href="{{ get_url(path='@/blog/_index.md') }}"><span aria-hidden="true">←</span> All posts</a></p>
+{% endblock blog_content %}
