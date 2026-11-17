@@ -156,14 +156,14 @@
         "jest",
         "javascript",
         "typescript",
-        "mysql",
-        "mongodb"
+        "postgresql",
+        "rust"
       ],
       "level": "senior",
       "name": "backend"
     },
     {
-      "keywords": ["ansible", "GCP", "VMware"],
+      "keywords": ["ansible", "GCP", "docker", "k8s"],
       "level": "senior",
       "name": "ops"
     }
@@ -191,9 +191,6 @@
     },
     {
       "name": "open source"
-    },
-    {
-      "name": "whisky"
     }
   ]
 }

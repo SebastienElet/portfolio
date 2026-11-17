@@ -67,6 +67,8 @@ Response headers, including the CSP, are defined in `static/_headers`. See the
 [deployment guide](docs/deployment-cloudflare.md) for the `ZOLA_VERSION=0.23.6`
 pin in Production and Preview, project settings, response headers and Vercel cleanup.
 
+The favicon uses the [Rust logo](https://github.com/rust-lang/www.rust-lang.org/blob/40b74d34bb8e9667c450166bdb91077bc5422fad/static/images/favicon.svg), adapted to the site’s light and dark accent colors. Its MIT license is included in `static/favicon-LICENSE.txt`.
+
 ## License
 
 This project is under the MIT License. Please, see [`LICENSE`](LICENSE).
