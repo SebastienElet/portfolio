@@ -2,17 +2,22 @@
 <ul class="blog-posts">
   {% for post in posts %}
   <li>
-    <article>
-      <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2>
+    <article class="panel blog-post-summary">
       <p class="blog-meta">
         <time datetime="{{ post.date }}">{{ post.date | date(format="d MMMM y", locale="en") }}</time>
-        {% if post.draft %} · Draft{% endif %}
+        {% if post.draft %}<span>Draft</span>{% endif %}
       </p>
-      {% if post.description %}<p>{{ post.description }}</p>{% endif %}
+      <div>
+        <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2>
+        {% if post.description %}<p>{{ post.description }}</p>{% endif %}
+      </div>
     </article>
   </li>
   {% endfor %}
 </ul>
 {% else %}
-<p class="blog-empty">No posts published yet. New articles will appear here.</p>
+<div class="panel blog-empty">
+  <h2>No posts published yet.</h2>
+  <p>New articles will appear here.</p>
+</div>
 {% endif %}

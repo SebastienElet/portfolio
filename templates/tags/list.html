@@ -1,19 +1,19 @@
 {% extends "blog/base.html" %}
 
-{% block title %}Tags{% endblock title %}
-
-{% block content %}
-<header>
+{% block blog_content %}
+<header class="blog-heading">
+  <p class="stamp">Field notes / Index</p>
   <h1>Tags</h1>
-  <p><a href="{{ get_url(path='@/blog/_index.md') }}">All posts</a></p>
+  <p class="blog-intro">Browse articles by topic.</p>
+  <p class="blog-actions"><a href="{{ get_url(path='@/blog/_index.md') }}"><span aria-hidden="true">←</span> All posts</a></p>
 </header>
 {% if terms %}
 <ul class="blog-tag-list">
   {% for term in terms %}
-  <li><a href="{{ term.permalink }}">{{ term.name }}</a> ({{ term.page_count }})</li>
+  <li class="panel"><a href="{{ term.permalink }}">{{ term.name }}</a><span class="stamp">{{ term.page_count }} {% if term.page_count == 1 %}article{% else %}articles{% endif %}</span></li>
   {% endfor %}
 </ul>
 {% else %}
-<p class="blog-empty">Tags will appear when posts are published.</p>
+<p class="panel blog-empty">Tags will appear when posts are published.</p>
 {% endif %}
-{% endblock content %}
+{% endblock blog_content %}

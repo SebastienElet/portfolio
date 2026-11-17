@@ -1,8 +1,10 @@
 base_url = "https://sebastien.elet.fr"
 title = "Sébastien Elet"
-description = "Curriculum vitae"
+description = "Sébastien Elet, Staff Engineer building and scaling B2B SaaS platforms with Node.js and TypeScript."
 default_language = "en"
 compile_sass = true
 generate_feeds = true
 feed_filenames = ["atom.xml"]
 taxonomies = [{ name = "tags" }]
+generate_sitemap = true
+generate_robots_txt = true

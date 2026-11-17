@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Sébastien Elet — Staff Engineer</title>
+  <desc id="description">Node.js, TypeScript and B2B SaaS. sebastien.elet.fr</desc>
+  <rect width="1200" height="630" fill="#fafafa"/>
+  <g font-family="system-ui, sans-serif">
+    <text x="80" y="235" font-size="88" font-weight="650" letter-spacing="-3" fill="#222">Sébastien Elet</text>
+    <text x="80" y="325" font-size="42" fill="#245b85">Staff Engineer</text>
+    <text x="80" y="390" font-size="32" fill="#222">Node.js · TypeScript · B2B SaaS</text>
+    <text x="80" y="550" font-size="26" fill="#555">sebastien.elet.fr</text>
+  </g>
+</svg>
