@@ -3,7 +3,7 @@
 {% block blog_content %}
 <article class="blog-post">
   <header class="blog-heading">
-    <p class="stamp"><a href="{{ get_url(path='@/blog/_index.md') }}">Blog</a> / Article</p>
+    <p class="stamp"><a href="/blog/">Blog</a> / Article</p>
     <h1>{{ page.title }}</h1>
     <p class="blog-meta">
       <time datetime="{{ page.date }}">{{ page.date | date(format="d MMMM y", locale="en") }}</time>
@@ -13,12 +13,12 @@
     {% if page.taxonomies.tags %}
     <ul class="blog-tags keywords" aria-label="Post tags">
       {% for tag in page.taxonomies.tags %}
-      <li><a href="{{ get_taxonomy_url(kind='tags', name=tag) }}">{{ tag }}</a></li>
+      <li><a href="{{ get_taxonomy_url(kind="tags", name=tag) | replace(from=config.base_url, to="") }}">{{ tag }}</a></li>
       {% endfor %}
     </ul>
     {% endif %}
   </header>
   <div class="panel blog-content"><div class="blog-prose">{{ page.content | safe }}</div></div>
 </article>
-<p class="blog-back"><a href="{{ get_url(path='@/blog/_index.md') }}"><span aria-hidden="true">←</span> All posts</a></p>
+<p class="blog-back"><a href="/blog/"><span aria-hidden="true">←</span> All posts</a></p>
 {% endblock blog_content %}
