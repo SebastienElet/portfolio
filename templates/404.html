@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found — {{ config.title }}{% endblock title %}
+
+{% block extra_head %}
+<meta name="robots" content="noindex">
+{% endblock extra_head %}
+
+{% block content %}
+<section class="blog-heading">
+  <h1>Page not found</h1>
+  <p class="blog-intro">This page may have moved, or the address may be out of date.</p>
+  <div class="blog-actions">
+    <a href="/"><span aria-hidden="true">←</span> Back to the CV</a>
+    <a href="/blog/">Browse the blog <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+{% endblock content %}
