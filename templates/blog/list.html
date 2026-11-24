@@ -6,9 +6,9 @@
   <h1>{{ section.title }}</h1>
   <p class="blog-intro">{{ section.description }}</p>
   <div class="blog-actions">
-    <a href="{{ get_url(path='atom.xml') }}">Subscribe via Atom <span aria-hidden="true">↗</span></a>
+    <a href="/atom.xml">Subscribe via Atom <span aria-hidden="true">↗</span></a>
     {% set tags = get_taxonomy(kind="tags") %}
-    {% if tags.items %}<a href="{{ get_url(path='tags/') }}">Browse tags <span aria-hidden="true">→</span></a>{% endif %}
+    {% if tags.items %}<a href="/tags/">Browse tags <span aria-hidden="true">→</span></a>{% endif %}
   </div>
 </header>
 <section class="blog-articles" aria-labelledby="articles-title">

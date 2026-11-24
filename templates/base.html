@@ -50,14 +50,14 @@
     <meta name="twitter:image:alt" content="{{ social_image_alt }}">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="/style.css">
-    <link rel="sitemap" type="application/xml" href="{{ get_url(path='sitemap.xml') }}">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     {% include "blog/feed.html" %}
     {% block extra_head %}{% endblock extra_head %}
   </head>
   <body id="top">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
-      <a class="site-name" href="{{ get_url(path='/') }}">{{ config.title }}</a>
+      <a class="site-name" href="/">{{ config.title }}</a>
       <nav aria-label="Primary">
         <ul>
           {% block nav_links %}

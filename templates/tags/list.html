@@ -5,12 +5,12 @@
   <p class="stamp">Field notes / Index</p>
   <h1>Tags</h1>
   <p class="blog-intro">Browse articles by topic.</p>
-  <p class="blog-actions"><a href="{{ get_url(path='@/blog/_index.md') }}"><span aria-hidden="true">←</span> All posts</a></p>
+  <p class="blog-actions"><a href="/blog/"><span aria-hidden="true">←</span> All posts</a></p>
 </header>
 {% if terms %}
 <ul class="blog-tag-list">
   {% for term in terms %}
-  <li class="panel"><a href="{{ term.permalink }}">{{ term.name }}</a><span class="stamp">{{ term.page_count }} {% if term.page_count == 1 %}article{% else %}articles{% endif %}</span></li>
+  <li class="panel"><a href="{{ term.permalink | replace(from=config.base_url, to="") }}">{{ term.name }}</a><span class="stamp">{{ term.page_count }} {% if term.page_count == 1 %}article{% else %}articles{% endif %}</span></li>
   {% endfor %}
 </ul>
 {% else %}
