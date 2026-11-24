@@ -29,4 +29,4 @@ The most useful lesson came from an ambiguous SQL task. I asked for a lot identi
 
 ## What I would do
 
-**Keep domain names in the language the team uses for the domain.** In this project, I would use French for business concepts in code, SQL tables and columns. That gives me names like `appelDeFonds` in TypeScript and `appels_de_fonds` in SQL, alongside familiar technical names like `created_at`. This comparison gave me no clear performance reason to translate the domain names for the agent. I would spend that effort making the business distinctions explicit in the tasks and tests.
+**Keep domain names in the language the team uses for the domain.** In this project, I would use French for business concepts in code, SQL tables and columns. I name entities in the singular, including SQL tables, so a funds call is `appelDeFonds` in TypeScript and `appel_de_fonds` in SQL. Technical names like `created_at` stay in English. This comparison gave me no clear performance reason to translate the domain names for the agent. I would spend that effort making the business distinctions explicit in the tasks and tests.
