@@ -1,8 +1,8 @@
 {
   "basics": {
     "name": "Sébastien Elet",
-    "label": "Staff Engineer · Node.js / TypeScript · B2B SaaS · AI-augmented",
-    "summary": "Over 19 years, I have scaled SaaS platforms from startups to corporate groups, without ever sacrificing velocity for stability. Today, as a Staff Engineer at Septeo ADB, I lead the condominium management engineering team on Lobby: 90 property management firms, 681 users and 155,000 condominium owners.",
+    "label": "Staff Engineer · Node.js / TypeScript · B2B SaaS",
+    "summary": "At Septeo ADB, I lead the engineering team responsible for condominium management in Lobby. Over 19 years in software development, I've scaled SaaS platforms at startups and larger companies.",
     "picture": "",
     "email": "",
     "phone": "",
@@ -30,10 +30,10 @@
       "position": "Staff Engineer",
       "location": "Remote",
       "startDate": "2025-10",
-      "summary": "Leading the condominium management engineering team on the Lobby platform (Node.js / GraphQL / PostgreSQL / AWS / Kubernetes). Skills: React.js, PostgreSQL, TypeScript.",
+      "summary": "Lobby runs on Node.js, GraphQL, PostgreSQL, AWS and Kubernetes. I also work with React and TypeScript.",
       "highlights": [
-        "Leading the migration team to onboard new clients.",
-        "Platform in production: 90 property management firms · 681 users · 155,000 condominium owners."
+        "Lead the team that migrates new clients to Lobby.",
+        "Lobby serves 90 property management firms, 681 users and 155,000 condominium owners."
       ]
     },
     {
@@ -42,9 +42,9 @@
       "location": "Remote",
       "startDate": "2024-03",
       "endDate": "2025-10",
-      "summary": "Technical lead for Lobby, a SaaS property management platform. Skills: React.js, PostgreSQL, TypeScript.",
+      "summary": "Technical lead for Lobby, a SaaS property management platform built with React, PostgreSQL and TypeScript.",
       "highlights": [
-        "Stabilized the architecture following the acquisition, migrated new clients and supported product teams."
+        "Stabilized Lobby's architecture after the acquisition, migrated new clients to the platform and supported the product teams."
       ]
     },
     {
@@ -55,9 +55,9 @@
       "endDate": "2024-02",
       "summary": "Skills: React.js, PostgreSQL, TypeScript.",
       "highlights": [
-        "Designed and led a complete data model redesign to move from a single-tenant architecture to SaaS. Result: 90 clients migrated in production.",
-        "Built an engine to import data from competing software to remove a barrier to customer acquisition. Supported 10 software products. Reduced migration time from 6 months to 6–8 weeks.",
-        "Replaced the third-party provider with an in-house EBICS integration. Result: eliminated duplicate transactions and imported approximately 2 million bank transaction records."
+        "Designed the new data model and led the redesign for the move from a single-tenant architecture to SaaS. We migrated 90 clients in production.",
+        "Built a data importer for 10 competing products, cutting client migrations from 6 months to 6–8 weeks.",
+        "Replaced a third-party provider with an in-house EBICS integration, eliminated duplicate transactions and imported about 2 million bank transactions."
       ]
     },
     {
@@ -68,62 +68,62 @@
       "endDate": "2022-03",
       "summary": "Skills: React.js, PostgreSQL, TypeScript.",
       "highlights": [
-        "Test coverage: increased integration test coverage from 0 to 50% on a Node.js / Prisma codebase, significantly reducing production regressions.",
-        "Electronic cheque submission: built the automated processing module — 130,000 cheques processed.",
-        "Monthly service charge payments: implemented monthly payments for 18,000 condominium owners.",
-        "Critical business features: automated generation of CERFA forms, billing of property management fees and issuing formal notices."
+        "Increased integration test coverage from 0% to 50% in a Node.js and Prisma codebase, reducing production regressions.",
+        "Built a module that processed 130,000 cheques submitted electronically.",
+        "Added monthly service charge payments for 18,000 condominium owners.",
+        "Automated the generation of CERFA forms, the billing of property management fees and the issuing of formal notices."
       ]
     },
     {
       "company": "SimpliField",
-      "position": "Lead backend developer",
+      "position": "Lead Backend Developer",
       "location": "Lille, France",
       "startDate": "2017-03-01",
       "endDate": "2020-08-31",
-      "summary": "SimpliField is a platform to improve efficiency for retailers",
+      "summary": "SimpliField builds operations software for retailers.",
       "highlights": [
-        "Migrate infrastructure from VMware to GCP",
-        "Migrate MongoDB databases to Mongo Atlas",
-        "Setup docker for development",
-        "Setup IAM server",
-        "Migrate from MongoDB Gridfs to Minio with GCS",
-        "Setup Monorepo"
+        "Migrated infrastructure from VMware to Google Cloud Platform.",
+        "Moved MongoDB databases to MongoDB Atlas.",
+        "Set up Docker for local development.",
+        "Set up an identity and access management server.",
+        "Migrated file storage from MongoDB GridFS to MinIO with Google Cloud Storage.",
+        "Set up a monorepo."
       ]
     },
     {
       "company": "SimpliField",
-      "position": "Full stack developer",
+      "position": "Full-Stack Developer",
       "location": "Lille, France",
       "startDate": "2015-10-12",
       "endDate": "2017-03-01",
-      "summary": "SimpliField is a platform to improve efficiency for retailers",
+      "summary": "SimpliField builds operations software for retailers.",
       "highlights": [
-        "Setup synchronization between the API and Salesforce Application",
-        "Publish open source ansible roles",
-        "Migrate all the codebase in EcmaScript 2016",
-        "Migrate servers from baremetal to a cluster VMware vSphere",
-        "Setup ansible for the whole infrastructure",
-        "Setup Open API documentation",
-        "Setup microservice architecture with RabbitMQ as message broker",
-        "Rewrite of the API for better performances"
+        "Set up data synchronization between the API and Salesforce.",
+        "Published open-source Ansible roles.",
+        "Migrated the codebase to ECMAScript 2016.",
+        "Migrated servers from bare metal to a VMware vSphere cluster.",
+        "Configured the infrastructure with Ansible.",
+        "Set up OpenAPI documentation.",
+        "Set up microservices that communicated through RabbitMQ.",
+        "Rewrote the API to improve performance."
       ]
     },
     {
       "company": "Denaroo",
-      "position": "Lead developer",
+      "position": "Lead Developer",
       "location": "Amiens, France",
       "startDate": "2011-02-01",
       "endDate": "2015-09-23",
-      "summary": "Denaroo is a telecoms company focused on cloud call center solutions",
+      "summary": "Denaroo is a telecoms company that builds cloud call center software.",
       "highlights": [
-        "Setup ansible to configure the whole infrastructure",
-        "Integrate angularjs on existing applications",
-        "Consulting on Symfony 2 and Zend Framework 1 projects",
-        "Setup tests on applications with Atoum, simpletest and mocha",
-        "Migrate Xen servers to LXC containers",
-        "Migrate CTC from Java to NodeJS",
-        "Migrate IPBX from asterisk to freeswitch",
-        "Migrate from SNV to Git"
+        "Configured the infrastructure with Ansible.",
+        "Integrated AngularJS into existing applications.",
+        "Consulted on Symfony 2 and Zend Framework 1 projects.",
+        "Set up application tests with atoum, SimpleTest and Mocha.",
+        "Migrated Xen servers to LXC containers.",
+        "Migrated CTC from Java to Node.js.",
+        "Migrated the IP PBX from Asterisk to FreeSWITCH.",
+        "Migrated version control from SVN to Git."
       ]
     },
     {
@@ -132,44 +132,44 @@
       "location": "Amiens, France",
       "startDate": "2007-11-26",
       "endDate": "2011-01-31",
-      "summary": "Denaroo is a telecoms company focused on cloud call center solutions",
+      "summary": "Denaroo is a telecoms company that builds cloud call center software.",
       "highlights": [
-        "Virtualize all web services with Xen",
-        "Setting Nginx on all production servers",
-        "Created CRM with PHP5",
-        "Created a web service (SOAP) for billing",
-        "IVR on Asterisk AEL or with Javascript and freeswitch",
-        "IPBX Maintenance with SIP/PSTN"
+        "Virtualized all web services with Xen.",
+        "Configured NGINX on all production servers.",
+        "Built a CRM in PHP 5.",
+        "Built a SOAP web service for billing.",
+        "Implemented IVR in Asterisk AEL and in JavaScript with FreeSWITCH.",
+        "Maintained the IP PBX with SIP and PSTN connectivity."
       ]
     }
   ],
   "references": [],
   "skills": [
     {
-      "keywords": ["html", "css", "javascript", "typescript", "React"],
+      "keywords": ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
       "level": "senior",
       "name": "frontend"
     },
     {
       "keywords": [
         "Node.js",
-        "expressjs",
+        "Express",
         "Fastify",
         "NestJS",
         "GraphQL",
         "BullMQ",
-        "jest",
-        "javascript",
-        "typescript",
-        "postgresql",
+        "Jest",
+        "JavaScript",
+        "TypeScript",
+        "PostgreSQL",
         "Prisma",
-        "rust"
+        "Rust"
       ],
       "level": "senior",
       "name": "backend"
     },
     {
-      "keywords": ["ansible", "GCP", "AWS", "docker", "Kubernetes"],
+      "keywords": ["Ansible", "GCP", "AWS", "Docker", "Kubernetes"],
       "level": "senior",
       "name": "ops"
     }
